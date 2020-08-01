@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardUseCompatPadding="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/round">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/des"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_launcher_background"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Time: "
+                android:src="@drawable/time_white"
+                app:layout_constraintBottom_toBottomOf="@+id/img"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toTopOf="@+id/img" />
+
+            <TextView
+                android:id="@+id/timeset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:text="9:00-10:00"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/time"
+                app:layout_constraintStart_toEndOf="@+id/time" />
+
+            <TextView
+                android:id="@+id/eventset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="8dp"
+                android:text="Inaugration Ceremony"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/time"
+                app:layout_constraintStart_toStartOf="@+id/time" />
+
+            <ImageView
+                android:id="@+id/locimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingBottom="8dp"
+                android:src="@drawable/location_white"
+                android:text="Time: "
+                app:layout_constraintStart_toStartOf="@+id/time"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
+
+            <TextView
+                android:id="@+id/locset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="Barn Hall"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:paddingBottom="8dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/locimg"
+                app:layout_constraintBottom_toBottomOf="@+id/locimg" />
+            <TextView
+                android:id="@+id/des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Description: "
+                android:visibility="gone"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/eventset"
+                app:layout_constraintTop_toBottomOf="@+id/locimg" />
+
+            <TextView
+                android:id="@+id/descset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxWidth="270dp"
+                android:visibility="gone"
+                android:paddingBottom="15dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:text="A Welcome Ceremony"
+                app:layout_constraintStart_toStartOf="@+id/time"
+                app:layout_constraintTop_toBottomOf="@+id/des" />
+
+            <ImageButton
+                android:id="@+id/location"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/descset"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img"
+                app:srcCompat="@drawable/loc" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

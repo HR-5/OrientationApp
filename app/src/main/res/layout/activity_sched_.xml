@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/drawer"
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Schedule.Sched_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:background="@color/toolbar"
+        android:elevation="4dp">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            android:padding="@dimen/appbar_padding"
+            android:textColor="#FFFFFF"
+            android:text="Orientation Schedule"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+    </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar"
+            style="@style/Base.Widget.Design.TabLayout"
+            app:tabTextColor="#FFFFFF"
+            app:tabSelectedTextColor="#09C8F8"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backc"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/appbar_padding"
+        app:menu="@menu/drawermenu"
+        android:id="@+id/nav"
+        app:headerLayout="@layout/nav_header"
+        android:layout_gravity = "start"
+        android:fitsSystemWindows = "true"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>
