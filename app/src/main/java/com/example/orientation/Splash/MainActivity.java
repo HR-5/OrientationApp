@@ -6,7 +6,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.orientation.API.GetDataService;
@@ -43,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        call();
+        if(isConnected()) {
+            call();
+        }
+        else {
+            Toast.makeText(this,"Failed to Update: Check Internet Connection",Toast.LENGTH_SHORT).show();
+            day();
+        }
     }
     public void call(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -58,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Food> foods = detailResponse.getFood();
                 clearTable();
                 addtable(schedules,departments,sports,foods);
-                Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show();
                 day();
             }
 
@@ -120,11 +128,24 @@ public class MainActivity extends AppCompatActivity {
     private void day(){
         Intent i = new Intent(this, Sched_Activity.class);
         startActivity(i);
+        overridePendingTransition(R.anim.slide_up,R.anim.stay);
     }
     private void clearTable(){
         this.deleteDatabase("schd.db");
         this.deleteDatabase("food.db");
         this.deleteDatabase("depart.db");
         this.deleteDatabase("sports.db");
+    }
+    public boolean isConnected() {
+        boolean connected = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo nInfo = cm.getActiveNetworkInfo();
+            connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+            return connected;
+        } catch (Exception e) {
+            Log.e("Connectivity Exception", e.getMessage());
+        }
+        return connected;
     }
 }

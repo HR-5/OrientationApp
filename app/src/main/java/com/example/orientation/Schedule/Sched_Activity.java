@@ -49,6 +49,10 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
         toggle.syncState();
         NavigationView navigationView =findViewById(R.id.nav);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(1).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
 
     }
 
@@ -59,14 +63,17 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
             case R.id.food:
                 i = new Intent(Sched_Activity.this, FoodActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_up,R.anim.stay);
                 break;
             case R.id.depts:
                 i = new Intent(Sched_Activity.this, DepartActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_up,R.anim.stay);
                 break;
             case R.id.sports:
                 i = new Intent(Sched_Activity.this, SportsActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_up,R.anim.stay);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer);

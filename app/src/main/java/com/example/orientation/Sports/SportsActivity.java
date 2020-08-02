@@ -38,12 +38,16 @@ public class SportsActivity extends AppCompatActivity implements NavigationView.
         toggle.syncState();
         NavigationView navigationView =findViewById(R.id.nav);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(1).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sportrecycle);
         SportAdapter sportAdapter = new SportAdapter(this,null);
         recyclerView.setAdapter(sportAdapter);
         recyclerView.setHasFixedSize(true);
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         SportsDB db = new SportsDB(this);
         sportAdapter.swapCursor(db.showData());
@@ -56,14 +60,17 @@ public class SportsActivity extends AppCompatActivity implements NavigationView.
             case R.id.food:
                 i = new Intent(SportsActivity.this, FoodActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_up,R.anim.stay);
                 break;
             case R.id.depts:
                 i = new Intent(SportsActivity.this, DepartActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_up,R.anim.stay);
                 break;
             case R.id.schd:
                 i = new Intent(SportsActivity.this, Sched_Activity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_up,R.anim.stay);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer);

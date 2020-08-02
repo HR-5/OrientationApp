@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools">
     <group android:checkableBehavior="none">
         <item android:id="@+id/schd"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/ic_schedule_black_24dp"
             android:title="Schedule"/>
         <item android:id="@+id/food"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/coffeecup"
             android:title="Food Stalls"/>
         <item android:id="@+id/sports"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/sport"
             android:title="Sport Centers"/>
         <item android:id="@+id/depts"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/business"
             android:title="Departments"/>
     </group>
     <item android:title="Communicate">

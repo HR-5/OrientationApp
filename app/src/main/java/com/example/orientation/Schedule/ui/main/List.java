@@ -43,7 +43,7 @@ public class List extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String datei = "DATE:" + date + "/08/2020";
+        String datei = "DATE:" + date;
         dateset.setText(datei);
         recyclerView.setAdapter(descAdapter);
         recyclerView.setHasFixedSize(true);

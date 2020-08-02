@@ -39,25 +39,25 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                date = "14";
+                date = "08/14/2020";
                 List list = new List(mContext,date);
                 return list;
 
             case 1:
-                date = "15";
+                date = "08/15/2020";
                 List list1 = new List(mContext,date);
                 return list1;
 
             case 2:
-                date = "16";
+                date = "08/16/2020";
                 List list2 = new List(mContext,date);
                 return list2;
             case 3:
-                date = "17";
+                date = "08/17/2020";
                 List list3 = new List(mContext,date);
                 return list3;
             case 4:
-                date = "18";
+                date = "08/18/2020";
                 List list4 = new List(mContext,date);
                 return list4;
         }
