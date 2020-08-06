@@ -27,6 +27,7 @@ public class SchdDB extends SQLiteOpenHelper {
                 SchdEntry.COLUMN_DESC + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_LOC + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_LURL + " TEXT NOT NULL, " +
+                SchdEntry.COLUMN_IMG + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_DATE + " TEXT NOT NULL"+
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_SCHDLIST_TABLE);

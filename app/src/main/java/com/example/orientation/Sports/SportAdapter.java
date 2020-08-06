@@ -15,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.orientation.R;
-import com.example.orientation.Schedule.DescAdapter;
-import com.example.orientation.model.FoodTable;
 import com.example.orientation.model.SportsTable;
 
 import java.util.ArrayList;
@@ -70,6 +68,7 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
+        int i = cursor.getCount();
         return cursor.getCount();
     }
 
@@ -94,7 +93,7 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            sportc = (TextView) itemView.findViewById(R.id.foodstall);
+            sportc = (TextView) itemView.findViewById(R.id.name);
             img = (ImageView) itemView.findViewById(R.id.img);
         }
     }

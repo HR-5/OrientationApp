@@ -32,6 +32,8 @@
             android:padding="@dimen/appbar_padding"
             android:textColor="#FFFFFF"
             android:text="Orientation Schedule"
+            android:fontFamily="@font/lobster"
+            android:textSize="22sp"
             android:layout_gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
     </androidx.appcompat.widget.Toolbar>
@@ -43,7 +45,7 @@
             android:background="@color/toolbar"
             style="@style/Base.Widget.Design.TabLayout"
             app:tabTextColor="#FFFFFF"
-            app:tabSelectedTextColor="#09C8F8"/>
+            app:tabSelectedTextColor="@color/blue"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -59,6 +61,7 @@
         android:layout_marginTop="@dimen/margin_top"
         app:menu="@menu/drawermenu"
         android:id="@+id/nav"
+        android:fontFamily="sans-serif-condensed-medium"
         app:itemIconTint="#09C8F8"
         android:background="@color/backc"
         app:itemTextColor="#FFFFFF"

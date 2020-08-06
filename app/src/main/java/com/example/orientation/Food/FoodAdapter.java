@@ -1,5 +1,6 @@
 package com.example.orientation.Food;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,17 +9,19 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.orientation.Dbhelper.FoodDB;
 import com.example.orientation.R;
-import com.example.orientation.Sports.SportAdapter;
 import com.example.orientation.model.FoodTable;
-import com.example.orientation.model.SchdTable;
 
 import java.util.ArrayList;
 
@@ -54,18 +57,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         holder.foodstall.setText(name);
         holder.img.setImageDrawable(res);
-        holder.foodstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                direct(lurl);
-            }
-        });
-        holder.img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                direct(lurl);
-            }
-        });
     }
 
     @Override
@@ -94,8 +85,17 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodstall = (TextView) itemView.findViewById(R.id.foodstall);
+            foodstall = (TextView) itemView.findViewById(R.id.name);
             img = (ImageView) itemView.findViewById(R.id.img);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String stallname = (String) foodstall.getText();
+                    FoodDB db = new FoodDB(context);
+                    FoodBottomSheet bottomSheet = new FoodBottomSheet(db.showDescr(stallname));
+                    bottomSheet.show(((AppCompatActivity)context).getSupportFragmentManager(),"BottomSheet");
+                }
+            });
         }
     }
 }

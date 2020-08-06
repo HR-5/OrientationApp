@@ -24,6 +24,7 @@ public class FoodDB extends SQLiteOpenHelper {
                 FoodEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 FoodEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 FoodEntry.COLUMN_LURL + " TEXT NOT NULL, " +
+                FoodEntry.COLUMN_DESC + " TEXT NOT NULL, " +
                 FoodEntry.COLUMN_IURL + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_FOODLIST_TABLE);
@@ -41,5 +42,13 @@ public class FoodDB extends SQLiteOpenHelper {
         String query = "Select * from " + FoodEntry.TABLE_NAME + " Order by " + FoodEntry.COLUMN_NAME;
         Cursor cursor = dB.rawQuery(query, null);
         return cursor;
+    }
+    public String showDescr(String name) {
+        SQLiteDatabase dB = this.getReadableDatabase();
+        String query = "Select "+ FoodEntry.COLUMN_DESC +" from " + FoodEntry.TABLE_NAME +" where "+FoodEntry.COLUMN_NAME+" LIKE "+"'%"+name+"%'";
+        Cursor cursor = dB.rawQuery(query, null);
+        cursor.moveToFirst();
+        String desc = cursor.getString(cursor.getColumnIndex(FoodEntry.COLUMN_DESC));
+        return desc;
     }
 }

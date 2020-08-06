@@ -4,6 +4,16 @@ public class Sports {
     public String name ;
     public String locurl;
     public String imgurl;
+    public String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     public String getImgurl() {
         return imgurl;

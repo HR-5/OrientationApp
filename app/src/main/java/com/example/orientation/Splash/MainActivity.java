@@ -10,6 +10,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.orientation.API.GetDataService;
@@ -46,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+        ImageView iv = (ImageView) findViewById(R.id.imageView);
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.trans);
+        iv.startAnimation(anim);
         if(isConnected()) {
             call();
         }
@@ -93,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 cv.put(SchdTable.SchdEntry.COLUMN_DESC, eve.getDescription());
                 cv.put(SchdTable.SchdEntry.COLUMN_LOC, eve.getLocation());
                 cv.put(SchdTable.SchdEntry.COLUMN_LURL, eve.getLocurl());
+                cv.put(SchdTable.SchdEntry.COLUMN_IMG, eve.getimgname());
                 cv.put(SchdTable.SchdEntry.COLUMN_DATE, schedules.get(i).getDate());
                 mDatabase.insert(SchdTable.SchdEntry.TABLE_NAME, null, cv);
             }
@@ -104,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 cv1.put(DepartTable.DepartEntry.COLUMN_NAME,department.getName());
                 cv1.put(DepartTable.DepartEntry.COLUMN_LURL,department.getLocurl());
                 cv1.put(DepartTable.DepartEntry.COLUMN_IURL,department.getImgurl());
+                cv1.put(DepartTable.DepartEntry.COLUMN_DESC,department.getDescription());
                 mDatabase.insert(DepartTable.DepartEntry.TABLE_NAME, null, cv1);
         }
         final SportsDB dbHelper2 = new SportsDB(context);
@@ -113,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             cv2.put(SportsTable.SportsEntry.COLUMN_NAME,sp.getName());
             cv2.put(SportsTable.SportsEntry.COLUMN_LURL,sp.getLocurl());
             cv2.put(SportsTable.SportsEntry.COLUMN_IURL,sp.getImgurl());
+            cv2.put(SportsTable.SportsEntry.COLUMN_DESC,sp.getDescription());
             mDatabase.insert(SportsTable.SportsEntry.TABLE_NAME, null, cv2);
         }
         final FoodDB dbHelper3 = new FoodDB(context);
@@ -122,13 +131,14 @@ public class MainActivity extends AppCompatActivity {
             cv3.put(FoodTable.FoodEntry.COLUMN_NAME,food.getName());
             cv3.put(FoodTable.FoodEntry.COLUMN_LURL,food.getLocurl());
             cv3.put(FoodTable.FoodEntry.COLUMN_IURL,food.getImgurl());
+            cv3.put(FoodTable.FoodEntry.COLUMN_DESC,food.getDescription());
             mDatabase.insert(FoodTable.FoodEntry.TABLE_NAME, null, cv3);
         }
     }
     private void day(){
         Intent i = new Intent(this, Sched_Activity.class);
         startActivity(i);
-        overridePendingTransition(R.anim.slide_up,R.anim.stay);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
     }
     private void clearTable(){
         this.deleteDatabase("schd.db");

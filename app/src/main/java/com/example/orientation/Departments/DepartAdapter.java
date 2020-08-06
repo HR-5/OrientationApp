@@ -1,10 +1,12 @@
 package com.example.orientation.Departments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import androidx.core.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.orientation.Food.FoodAdapter;
 import com.example.orientation.R;
 import com.example.orientation.model.DepartTable;
-import com.example.orientation.model.FoodTable;
+import com.example.orientation.model.Department;
 
 import java.util.ArrayList;
 
@@ -25,11 +29,13 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
     private Context context;
     Cursor cursor;
     ArrayList<Boolean> show;
+    ArrayList<String> names;
 
     public DepartAdapter(Context context, Cursor cursor) {
         this.context = context;
         this.cursor = cursor;
         show = new ArrayList<Boolean>();
+        names = new ArrayList<String>();
     }
 
     @NonNull
@@ -46,6 +52,7 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         }
         show.add(position,false);
         String name = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_NAME));
+        names.add(name);
         String iurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_IURL));
         final String lurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LURL));
         String uri = "@drawable/"+iurl;
@@ -54,18 +61,20 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
 
         holder.depart.setText(name);
         holder.img.setImageDrawable(res);
-        holder.depart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                direct(lurl);
-            }
-        });
-        holder.img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                direct(lurl);
-            }
-        });
+//        holder.depart.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                direct(lurl);
+//                return false;
+//            }
+//        });
+//        holder.img.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                direct(lurl);
+//                return false;
+//            }
+//        });
 
     }
 
@@ -92,11 +101,27 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView depart;
         private ImageView img;
+        private View v;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            depart = (TextView) itemView.findViewById(R.id.foodstall);
+            depart = (TextView) itemView.findViewById(R.id.name);
             img = (ImageView) itemView.findViewById(R.id.img);
+            v = itemView;
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    String name = names.get(pos);
+                    Intent intent = new Intent(context,DepartMotto.class);
+                    intent.putExtra("name",name);
+                    Pair[] pair = new Pair[2];
+                    pair[0]= Pair.create((View) depart,"name");
+                    pair[1]= Pair.create((View) img,"imageShare");
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,pair);
+                    context.startActivity(intent,options.toBundle());
+                }
+            });
         }
     }
 }

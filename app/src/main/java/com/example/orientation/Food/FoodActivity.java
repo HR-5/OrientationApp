@@ -14,15 +14,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.orientation.Dbhelper.FoodDB;
-import com.example.orientation.Dbhelper.SchdDB;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
-import com.example.orientation.Sports.SportAdapter;
 import com.example.orientation.Sports.SportsActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 
-public class FoodActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class FoodActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class FoodActivity extends AppCompatActivity implements NavigationView.On
         FoodAdapter foodAdapter = new FoodAdapter(this,null);
         recyclerView.setAdapter(foodAdapter);
         recyclerView.setHasFixedSize(true);
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         FoodDB db = new FoodDB(this);
         foodAdapter.swapCursor(db.showData());
@@ -61,17 +60,17 @@ public class FoodActivity extends AppCompatActivity implements NavigationView.On
             case R.id.schd:
                 i = new Intent(FoodActivity.this, Sched_Activity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.depts:
                 i = new Intent(FoodActivity.this, DepartActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.sports:
                 i = new Intent(FoodActivity.this, SportsActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer);

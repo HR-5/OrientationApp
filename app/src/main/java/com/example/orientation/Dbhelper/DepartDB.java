@@ -25,6 +25,7 @@ public class DepartDB extends SQLiteOpenHelper {
                 DepartEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 DepartEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 DepartEntry.COLUMN_LURL + " TEXT NOT NULL, " +
+                DepartEntry.COLUMN_DESC + " TEXT NOT NULL, " +
                 DepartEntry.COLUMN_IURL + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_DEPARTLIST_TABLE);
@@ -40,6 +41,12 @@ public class DepartDB extends SQLiteOpenHelper {
     public Cursor showData() {
         SQLiteDatabase dB = this.getReadableDatabase();
         String query = "Select * from " + DepartEntry.TABLE_NAME + " Order by " + DepartEntry.COLUMN_NAME;
+        Cursor cursor = dB.rawQuery(query, null);
+        return cursor;
+    }
+    public Cursor showDatabyName(String name) {
+        SQLiteDatabase dB = this.getReadableDatabase();
+        String query = "Select * from " + DepartEntry.TABLE_NAME +" where "+DepartEntry.COLUMN_NAME+" LIKE "+"'%"+name+"%'";
         Cursor cursor = dB.rawQuery(query, null);
         return cursor;
     }

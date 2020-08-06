@@ -7,6 +7,15 @@ public class Event {
     public String description;
     public String location;
     public String locurl;
+    public String imgname;
+
+    public String getimgname() {
+        return imgname;
+    }
+
+    public void setimgname(String imgname) {
+        this.imgname = imgname;
+    }
 
     public String getName() {
         return name;

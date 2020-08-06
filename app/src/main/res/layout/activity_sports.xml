@@ -28,6 +28,9 @@
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="Sports Centres"
+            android:fontFamily="@font/lobster"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
     </androidx.appcompat.widget.Toolbar>

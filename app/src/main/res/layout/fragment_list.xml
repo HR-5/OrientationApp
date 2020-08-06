@@ -16,6 +16,7 @@
       android:textColor="#FFFFFF"
       android:layout_gravity="center"
       android:textStyle="italic"
+      android:fontFamily="sans-serif-condensed-medium"
       android:background="#00010a"
       android:textAlignment="center"
       android:textSize="20sp"

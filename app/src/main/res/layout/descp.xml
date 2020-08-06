@@ -52,8 +52,9 @@
                 android:layout_marginLeft="7dp"
                 android:text="9:00-10:00"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:fontFamily="@font/philosopher"
                 app:layout_constraintBottom_toBottomOf="@+id/time"
                 app:layout_constraintStart_toEndOf="@+id/time" />
 
@@ -66,9 +67,10 @@
                 android:layout_marginBottom="15dp"
                 android:paddingTop="8dp"
                 android:text="Inaugration Ceremony"
+                android:textStyle="bold|italic"
+                android:fontFamily="@font/philosopher"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/time"
                 app:layout_constraintStart_toStartOf="@+id/time" />
 
@@ -91,9 +93,10 @@
                 android:layout_marginLeft="4dp"
                 android:text="Barn Hall"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"
+                android:textSize="20sp"
                 android:paddingBottom="8dp"
-                android:textStyle="bold"
+                android:textStyle="bold|italic"
+                android:fontFamily="@font/philosopher"
                 app:layout_constraintStart_toEndOf="@+id/locimg"
                 app:layout_constraintBottom_toBottomOf="@+id/locimg" />
             <TextView
@@ -104,8 +107,9 @@
                 android:text="Description: "
                 android:visibility="gone"
                 android:textColor="#FFFFFF"
-                android:textSize="15dp"
-                android:textStyle="bold"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                android:fontFamily="@font/philosopher"
                 app:layout_constraintStart_toStartOf="@+id/eventset"
                 app:layout_constraintTop_toBottomOf="@+id/locimg" />
 
@@ -116,10 +120,11 @@
                 android:layout_marginTop="5dp"
                 android:maxWidth="270dp"
                 android:visibility="gone"
-                android:paddingBottom="15dp"
-                android:textStyle="bold"
+                android:paddingBottom="15sp"
+                android:textStyle="bold|italic"
+                android:fontFamily="@font/philosopher"
                 android:textColor="#FFFFFF"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:text="A Welcome Ceremony"
                 app:layout_constraintStart_toStartOf="@+id/time"
                 app:layout_constraintTop_toBottomOf="@+id/des" />

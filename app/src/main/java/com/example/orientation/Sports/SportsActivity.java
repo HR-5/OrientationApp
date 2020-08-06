@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.orientation.Dbhelper.FoodDB;
 import com.example.orientation.Dbhelper.SportsDB;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Food.FoodActivity;
@@ -60,21 +59,22 @@ public class SportsActivity extends AppCompatActivity implements NavigationView.
             case R.id.food:
                 i = new Intent(SportsActivity.this, FoodActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.depts:
                 i = new Intent(SportsActivity.this, DepartActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.schd:
                 i = new Intent(SportsActivity.this, Sched_Activity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

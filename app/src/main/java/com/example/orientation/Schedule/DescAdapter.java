@@ -3,6 +3,7 @@ package com.example.orientation.Schedule;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.transition.AutoTransition;
@@ -50,11 +51,16 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         String event = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_EVENT));
         String time = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_TIME));
         String des = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_DESC));
+        String iurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_IMG));
         String loc = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LOC));
         final String lurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LURL));
+        String uri = "@drawable/"+iurl;
+        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+        Drawable res = context.getResources().getDrawable(imageResource);
 
         holder.eveset.setText(event);
         holder.timeset.setText(time);
+        holder.img.setImageDrawable(res);
         holder.desset.setText(des);
         holder.locset.setText(loc);
         holder.dir.setOnClickListener(new View.OnClickListener() {

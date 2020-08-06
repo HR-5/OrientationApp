@@ -14,9 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.orientation.Dbhelper.DepartDB;
-import com.example.orientation.Dbhelper.FoodDB;
 import com.example.orientation.Food.FoodActivity;
-import com.example.orientation.Food.FoodAdapter;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
 import com.example.orientation.Sports.SportsActivity;
@@ -48,7 +46,7 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
         DepartAdapter departAdapter = new DepartAdapter(this,null);
         recyclerView.setAdapter(departAdapter);
         recyclerView.setHasFixedSize(true);
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         DepartDB db = new DepartDB(this);
         departAdapter.swapCursor(db.showData());
@@ -61,17 +59,17 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
             case R.id.food:
                 i = new Intent(DepartActivity.this, FoodActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.schd:
                 i = new Intent(DepartActivity.this, Sched_Activity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.sports:
                 i = new Intent(DepartActivity.this, SportsActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer);

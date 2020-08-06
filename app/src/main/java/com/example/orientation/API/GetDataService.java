@@ -8,6 +8,6 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("getdetails")
+    @GET("getdetails/")
     Call<DetailResponse> listdetail();
 }

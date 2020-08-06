@@ -7,9 +7,7 @@ import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Food.FoodActivity;
 import com.example.orientation.R;
 import com.example.orientation.Sports.SportsActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
@@ -20,9 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.orientation.Schedule.ui.main.SectionsPagerAdapter;
 
@@ -63,21 +59,27 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
             case R.id.food:
                 i = new Intent(Sched_Activity.this, FoodActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.depts:
                 i = new Intent(Sched_Activity.this, DepartActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.sports:
                 i = new Intent(Sched_Activity.this, SportsActivity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_up,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }
