@@ -1,5 +1,9 @@
 package com.example.orientation.Schedule;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +28,9 @@ import com.example.orientation.R;
 import com.example.orientation.model.SchdTable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
     private Context context;
@@ -81,7 +88,6 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
                 direct(lurl);
             }
         });
-
     }
 
     @Override
@@ -104,10 +110,8 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         context.startActivity(intent);
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView img;
-        private TextView date;
         private TextView eveset;
         private TextView locset;
         private ImageView loc;
@@ -123,7 +127,6 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
             locset = (TextView) itemView.findViewById(R.id.locset);
             loc = (ImageView) itemView.findViewById(R.id.locimg);
             timeset = (TextView) itemView.findViewById(R.id.timeset);
-            des = (TextView) itemView.findViewById(R.id.des);
             desset = (TextView) itemView.findViewById(R.id.descset);
             dir = (ImageButton) itemView.findViewById(R.id.location);
             card = (CardView) itemView.findViewById(R.id.card);
@@ -134,9 +137,7 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
                     Boolean isShow = show.get(position);
                     if(isShow){
                         show.add(position,false);
-                        ((CardView)view).findViewById(R.id.des).setVisibility(View.GONE);
                         ((CardView)view).findViewById(R.id.descset).setVisibility(View.GONE);
-                        ((CardView)view).findViewById(R.id.location).setVisibility(View.GONE);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                             TransitionManager.beginDelayedTransition(card,new AutoTransition());
                         }
@@ -146,9 +147,7 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
                             TransitionManager.beginDelayedTransition(card,new AutoTransition());
                         }
                         show.add(position,true);
-                        ((CardView)view).findViewById(R.id.des).setVisibility(View.VISIBLE);
                         ((CardView)view).findViewById(R.id.descset).setVisibility(View.VISIBLE);
-                        ((CardView)view).findViewById(R.id.location).setVisibility(View.VISIBLE);
                     }
                 }
             });

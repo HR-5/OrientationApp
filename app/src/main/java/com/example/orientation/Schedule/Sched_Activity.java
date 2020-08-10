@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.orientation.Departments.DepartActivity;
+import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.Food.FoodActivity;
 import com.example.orientation.R;
 import com.example.orientation.Sports.SportsActivity;
@@ -51,7 +52,6 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
 
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent i;
@@ -68,6 +68,11 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.sports:
                 i = new Intent(Sched_Activity.this, SportsActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                break;
+            case R.id.help:
+                i = new Intent(Sched_Activity.this, FeatureActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

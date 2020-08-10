@@ -14,9 +14,9 @@
         android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:transitionName="imageShare"
+        android:background="@drawable/admin_block"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        android:background="@drawable/admin_block"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gradient" />
@@ -33,8 +33,8 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         android:transitionName="name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/img" />
+        app:layout_constraintBottom_toBottomOf="@+id/img"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/vision"

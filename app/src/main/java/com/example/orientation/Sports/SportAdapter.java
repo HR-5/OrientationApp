@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,13 +52,7 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
 
         holder.sportc.setText(name);
         holder.img.setImageDrawable(res);
-        holder.sportc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                direct(lurl);
-            }
-        });
-        holder.img.setOnClickListener(new View.OnClickListener() {
+        holder.maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 direct(lurl);
@@ -68,7 +63,6 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        int i = cursor.getCount();
         return cursor.getCount();
     }
 
@@ -90,11 +84,13 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView sportc;
         private ImageView img;
+        ImageButton maps;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             sportc = (TextView) itemView.findViewById(R.id.name);
             img = (ImageView) itemView.findViewById(R.id.img);
+            maps = (ImageButton) itemView.findViewById(R.id.maps);
         }
     }
 }

@@ -5,30 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/cardcolor"
+        android:elevation="6dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/round">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_height="125dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="20dp"
-                android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/des"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_launcher_background"
                 tools:ignore="VectorDrawableCompat" />
 
@@ -38,11 +36,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Time: "
                 android:src="@drawable/time_white"
-                app:layout_constraintBottom_toBottomOf="@+id/img"
+                android:text="Time: "
+                app:layout_constraintBottom_toBottomOf="@+id/timeset"
                 app:layout_constraintStart_toEndOf="@+id/img"
-                app:layout_constraintTop_toTopOf="@+id/img" />
+                app:layout_constraintTop_toTopOf="@+id/timeset" />
 
             <TextView
                 android:id="@+id/timeset"
@@ -50,40 +48,38 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:layout_marginLeft="7dp"
+                android:fontFamily="@font/mysans"
                 android:text="9:00-10:00"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold|italic"
-                android:fontFamily="@font/philosopher"
-                app:layout_constraintBottom_toBottomOf="@+id/time"
-                app:layout_constraintStart_toEndOf="@+id/time" />
+                app:layout_constraintBottom_toBottomOf="@+id/img"
+                app:layout_constraintStart_toEndOf="@+id/time"
+                app:layout_constraintTop_toTopOf="@+id/img" />
 
             <TextView
                 android:id="@+id/eventset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
+                android:background="@android:color/transparent"
                 android:layout_marginLeft="2dp"
-                android:layout_marginBottom="15dp"
-                android:paddingTop="8dp"
+                android:fontFamily="@font/mysans"
+                android:paddingTop="14dp"
                 android:text="Inaugration Ceremony"
-                android:textStyle="bold|italic"
-                android:fontFamily="@font/philosopher"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/time"
-                app:layout_constraintStart_toStartOf="@+id/time" />
+                app:layout_constraintStart_toStartOf="@+id/time"
+                app:layout_constraintTop_toTopOf="@id/img" />
 
             <ImageView
                 android:id="@+id/locimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingBottom="8dp"
+                android:paddingBottom="14dp"
                 android:src="@drawable/location_white"
-                android:text="Time: "
-                app:layout_constraintStart_toStartOf="@+id/time"
-                app:layout_constraintTop_toBottomOf="@+id/time" />
+                app:layout_constraintBottom_toBottomOf="@+id/locset"
+                app:layout_constraintTop_toTopOf="@+id/locset"
+                app:layout_constraintStart_toStartOf="@+id/time" />
 
             <TextView
                 android:id="@+id/locset"
@@ -91,56 +87,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
+                android:fontFamily="@font/mysans"
+                android:paddingBottom="14dp"
+                android:background="@android:color/transparent"
                 android:text="Barn Hall"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:paddingBottom="8dp"
-                android:textStyle="bold|italic"
-                android:fontFamily="@font/philosopher"
-                app:layout_constraintStart_toEndOf="@+id/locimg"
-                app:layout_constraintBottom_toBottomOf="@+id/locimg" />
-            <TextView
-                android:id="@+id/des"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Description: "
-                android:visibility="gone"
-                android:textColor="#FFFFFF"
-                android:textSize="17sp"
-                android:textStyle="bold|italic"
-                android:fontFamily="@font/philosopher"
-                app:layout_constraintStart_toStartOf="@+id/eventset"
-                app:layout_constraintTop_toBottomOf="@+id/locimg" />
+                app:layout_constraintBottom_toBottomOf="@+id/img"
+                app:layout_constraintStart_toEndOf="@+id/locimg" />
 
             <TextView
                 android:id="@+id/descset"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:maxWidth="270dp"
-                android:visibility="gone"
-                android:paddingBottom="15sp"
-                android:textStyle="bold|italic"
-                android:fontFamily="@font/philosopher"
+                android:background="#24EFEFF3"
+                android:fontFamily="@font/mysans"
+                android:padding="20dp"
+                android:text="A Welcome Ceremony Hi I am Harshavardh"
                 android:textColor="#FFFFFF"
                 android:textSize="17dp"
-                android:text="A Welcome Ceremony"
-                app:layout_constraintStart_toStartOf="@+id/time"
-                app:layout_constraintTop_toBottomOf="@+id/des" />
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img" />
 
             <ImageButton
                 android:id="@+id/location"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/descset"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img"
-                app:srcCompat="@drawable/loc" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="11dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/locset"
+                app:layout_constraintTop_toBottomOf="@+id/timeset"
+                app:srcCompat="@drawable/link" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

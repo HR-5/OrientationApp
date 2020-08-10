@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -43,23 +44,25 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     Context context;
-
+    ArrayList<Schedule> schedules;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
         ImageView iv = (ImageView) findViewById(R.id.imageView);
-        Animation anim = AnimationUtils.loadAnimation(this,R.anim.trans);
-        iv.startAnimation(anim);
         if(isConnected()) {
+            Animation anim = AnimationUtils.loadAnimation(this,R.anim.trans);
+            iv.startAnimation(anim);
             call();
         }
         else {
             Toast.makeText(this,"Failed to Update: Check Internet Connection",Toast.LENGTH_SHORT).show();
-            day();
+            callSchedule();
         }
     }
+
+
     public void call(){
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<DetailResponse> detailcall = service.listdetail();
@@ -67,18 +70,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
                 DetailResponse detailResponse = response.body();
-                ArrayList<Schedule> schedules = detailResponse.getSchedule();
+                schedules = detailResponse.getSchedule();
                 ArrayList<Department> departments = detailResponse.getDepartment();
                 ArrayList<Sports> sports = detailResponse.getSports();
                 ArrayList<Food> foods = detailResponse.getFood();
                 clearTable();
                 addtable(schedules,departments,sports,foods);
-                day();
+                callSchedule();
             }
 
             @Override
             public void onFailure(Call<DetailResponse> call, Throwable t) {
                 Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+                finishAffinity();
 
             }
         });
@@ -135,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             mDatabase.insert(FoodTable.FoodEntry.TABLE_NAME, null, cv3);
         }
     }
-    private void day(){
+    private void callSchedule(){
         Intent i = new Intent(this, Sched_Activity.class);
         startActivity(i);
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);

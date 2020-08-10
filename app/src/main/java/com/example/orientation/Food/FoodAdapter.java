@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,6 +58,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         holder.foodstall.setText(name);
         holder.img.setImageDrawable(res);
+        holder.maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                direct(lurl);
+            }
+        });
     }
 
     @Override
@@ -82,11 +89,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView foodstall;
         private ImageView img;
+        ImageButton maps;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             foodstall = (TextView) itemView.findViewById(R.id.name);
             img = (ImageView) itemView.findViewById(R.id.img);
+            maps = (ImageButton) itemView.findViewById(R.id.maps);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

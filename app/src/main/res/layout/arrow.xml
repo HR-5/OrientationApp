@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
         android:layout_gravity="center_vertical"
         android:src="@drawable/arrow"/>
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.orientation.Dbhelper.DepartDB;
+import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.Food.FoodActivity;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
@@ -68,6 +69,11 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.sports:
                 i = new Intent(DepartActivity.this, SportsActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                break;
+            case R.id.help:
+                i = new Intent(DepartActivity.this, FeatureActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

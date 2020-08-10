@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.orientation.Dbhelper.FoodDB;
 import com.example.orientation.Departments.DepartActivity;
+import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
 import com.example.orientation.Sports.SportsActivity;
@@ -69,6 +70,11 @@ public class FoodActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.sports:
                 i = new Intent(FoodActivity.this, SportsActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                break;
+            case R.id.help:
+                i = new Intent(FoodActivity.this, FeatureActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

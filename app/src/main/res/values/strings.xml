@@ -13,4 +13,15 @@
     <string name="close">Close</string>
     <string name="vision">Vision</string>
     <string name="mission">Mission</string>
+    <string name="features">Orientation Programs are conducted to welcome the freshers coming into the college and make them comfortable to adapt to the College Environment. During this period, freshers face many difficulties like knowing their orientation schedules, locating departments during Department Visits. This Orientation App is built to help the freshers to know their schedules and locate places like Grocery stores,Departments,etc inside the campus.
+
+\n\nSchedule:\nThis tab contains the name, timings, venue and description of the events conducted during the Orientation Program. The venue can be located on google maps just by touching the Name of the venue. The schedule gets updated from its server every time you open the app using the internet. The schedule can be viewed offline after the app is opened using the internet at least once.
+Note: All the timings of the events are not as per "NITT Standard Time"
+
+\n\nFood Areas, and Food Stalls:\nThere are many places across the campus that caters to the needs of students to sate their cravings for snacks and lunch. This app contains the list of all food areas around the campus consisting of restaurants and snack areas. The app also contains the location of these handy spaces for easy navigation for first-timers
+
+\n\nSports Centers:\nThis tab contains locations of all the sports grounds and the sports complex across the campus and a classification of the types of courts.
+
+\n\nDepartments:\nIt is easily possible to get lost the first time in college during department visits. To make the fresher’s lives a bit easier, this tab contains the locations of all the UG departments which will be very useful for the freshers during Department Visit.
+</string>
 </resources>

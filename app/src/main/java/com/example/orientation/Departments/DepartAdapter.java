@@ -10,6 +10,7 @@ import androidx.core.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,20 +62,12 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
 
         holder.depart.setText(name);
         holder.img.setImageDrawable(res);
-//        holder.depart.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                direct(lurl);
-//                return false;
-//            }
-//        });
-//        holder.img.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                direct(lurl);
-//                return false;
-//            }
-//        });
+        holder.maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                direct(lurl);
+            }
+        });
 
     }
 
@@ -102,11 +95,13 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         private TextView depart;
         private ImageView img;
         private View v;
+        ImageButton maps;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             depart = (TextView) itemView.findViewById(R.id.name);
             img = (ImageView) itemView.findViewById(R.id.img);
+            maps = (ImageButton) itemView.findViewById(R.id.maps);
             v = itemView;
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
