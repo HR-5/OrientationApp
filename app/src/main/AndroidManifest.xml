@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Features.FeatureActivity">
+        <activity android:name=".Settings.SettingsActivity">
         </activity>
+        <activity android:name=".Features.FeatureActivity"></activity>
         <activity
             android:name=".Departments.DepartMotto"
             android:screenOrientation="portrait"
@@ -37,7 +38,6 @@
             android:name=".Schedule.Sched_Activity"
             android:label="@string/title_activity_sched_"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".Splash.MainActivity"

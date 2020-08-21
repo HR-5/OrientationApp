@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/backc"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/backcolor">
 
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:background="@drawable/admin_block"
         android:scaleType="centerCrop"
         android:transitionName="imageShare"
-        android:background="@drawable/admin_block"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +58,7 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:text="TextView"
-        android:textColor="@color/white"
+        android:textColor="?attr/textcolor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/vision"
@@ -89,7 +88,7 @@
         android:maxWidth="370dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:textColor="@color/white"
+        android:textColor="?attr/textcolor"
         android:textSize="18sp"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"

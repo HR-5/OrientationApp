@@ -20,11 +20,12 @@ import com.example.orientation.model.SportsTable;
 
 import java.util.ArrayList;
 
-public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
+public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> {
     private Context context;
     Cursor cursor;
     ArrayList<Boolean> show;
-    public SportAdapter(Context c,Cursor mcursor) {
+
+    public SportAdapter(Context c, Cursor mcursor) {
         context = c;
         cursor = mcursor;
         show = new ArrayList<Boolean>();
@@ -42,11 +43,11 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
         if (!cursor.moveToPosition(position)) {
             return;
         }
-        show.add(position,false);
+        show.add(position, false);
         String name = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_NAME));
         String iurl = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_IURL));
         final String lurl = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_LURL));
-        String uri = "@drawable/"+iurl;
+        String uri = "@drawable/" + iurl;
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable res = context.getResources().getDrawable(imageResource);
 
@@ -66,7 +67,7 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
         return cursor.getCount();
     }
 
-    public void swapCursor(Cursor newCursor){
+    public void swapCursor(Cursor newCursor) {
         if (cursor != null) {
             cursor.close();
         }
@@ -75,7 +76,8 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder>{
             notifyDataSetChanged();
         }
     }
-    public void direct(String lurl){
+
+    public void direct(String lurl) {
         Uri uri = Uri.parse(lurl);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         context.startActivity(intent);

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardUseCompatPadding="true"
+        android:elevation="6dp"
+        app:cardBackgroundColor="?attr/cardcolor"
         app:cardCornerRadius="15dp"
-        app:cardBackgroundColor="@color/cardcolor"
-        android:elevation="6dp">
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_marginLeft="7dp"
                 android:fontFamily="@font/mysans"
                 android:text="9:00-10:00"
-                android:textColor="#FFFFFF"
+                android:textColor="?attr/textcolor"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img"
                 app:layout_constraintStart_toEndOf="@+id/time"
@@ -61,12 +61,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:background="@android:color/transparent"
                 android:layout_marginLeft="2dp"
+                android:background="@android:color/transparent"
                 android:fontFamily="@font/mysans"
                 android:paddingTop="14dp"
                 android:text="Inaugration Ceremony"
-                android:textColor="#FFFFFF"
+                android:textColor="?attr/textcolor"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/time"
                 app:layout_constraintTop_toTopOf="@id/img" />
@@ -78,8 +78,8 @@
                 android:paddingBottom="14dp"
                 android:src="@drawable/location_white"
                 app:layout_constraintBottom_toBottomOf="@+id/locset"
-                app:layout_constraintTop_toTopOf="@+id/locset"
-                app:layout_constraintStart_toStartOf="@+id/time" />
+                app:layout_constraintStart_toStartOf="@+id/time"
+                app:layout_constraintTop_toTopOf="@+id/locset" />
 
             <TextView
                 android:id="@+id/locset"
@@ -87,11 +87,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
+                android:background="@android:color/transparent"
                 android:fontFamily="@font/mysans"
                 android:paddingBottom="14dp"
-                android:background="@android:color/transparent"
                 android:text="Barn Hall"
-                android:textColor="#FFFFFF"
+                android:textColor="?attr/textcolor"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img"
                 app:layout_constraintStart_toEndOf="@+id/locimg" />
@@ -100,11 +100,11 @@
                 android:id="@+id/descset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#24EFEFF3"
+                android:background="?attr/carddrop"
                 android:fontFamily="@font/mysans"
                 android:padding="20dp"
                 android:text="A Welcome Ceremony Hi I am Harshavardh"
-                android:textColor="#FFFFFF"
+                android:textColor="?attr/textcolor"
                 android:textSize="17dp"
                 android:textStyle="italic"
                 android:visibility="gone"

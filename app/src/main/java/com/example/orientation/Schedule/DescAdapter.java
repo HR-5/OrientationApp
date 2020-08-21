@@ -36,6 +36,7 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
     private Context context;
     Cursor cursor;
     ArrayList<Boolean> show;
+
     public DescAdapter(Context c, Cursor mcursor) {
         context = c;
         cursor = mcursor;
@@ -54,14 +55,14 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         if (!cursor.moveToPosition(position)) {
             return;
         }
-        show.add(position,false);
+        show.add(position, false);
         String event = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_EVENT));
         String time = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_TIME));
         String des = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_DESC));
         String iurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_IMG));
         String loc = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LOC));
         final String lurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LURL));
-        String uri = "@drawable/"+iurl;
+        String uri = "@drawable/" + iurl;
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable res = context.getResources().getDrawable(imageResource);
 
@@ -95,7 +96,7 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         return cursor.getCount();
     }
 
-    public void swapCursor(Cursor newCursor){
+    public void swapCursor(Cursor newCursor) {
         if (cursor != null) {
             cursor.close();
         }
@@ -104,7 +105,8 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
             notifyDataSetChanged();
         }
     }
-    public void direct(String lurl){
+
+    public void direct(String lurl) {
         Uri uri = Uri.parse(lurl);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         context.startActivity(intent);
@@ -120,6 +122,7 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         private TextView desset;
         private ImageButton dir;
         private CardView card;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.img);
@@ -135,19 +138,18 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     Boolean isShow = show.get(position);
-                    if(isShow){
-                        show.add(position,false);
-                        ((CardView)view).findViewById(R.id.descset).setVisibility(View.GONE);
+                    if (isShow) {
+                        show.add(position, false);
+                        ((CardView) view).findViewById(R.id.descset).setVisibility(View.GONE);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                            TransitionManager.beginDelayedTransition(card,new AutoTransition());
+                            TransitionManager.beginDelayedTransition(card, new AutoTransition());
                         }
-                    }
-                    else {
+                    } else {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                            TransitionManager.beginDelayedTransition(card,new AutoTransition());
+                            TransitionManager.beginDelayedTransition(card, new AutoTransition());
                         }
-                        show.add(position,true);
-                        ((CardView)view).findViewById(R.id.descset).setVisibility(View.VISIBLE);
+                        show.add(position, true);
+                        ((CardView) view).findViewById(R.id.descset).setVisibility(View.VISIBLE);
                     }
                 }
             });

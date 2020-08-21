@@ -6,30 +6,42 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="backcolor">@color/backc</item>
+        <item name="cardcolor">@color/cardcolor</item>
+        <item name="textcolor">@color/white</item>
+        <item name="toolbarcolor">@color/toolbar</item>
+        <item name="imagecolor">@color/white</item>
+        <item name="carddrop">@color/carddrop</item>
         <item name="drawerArrowStyle">@style/DrawerIcon</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="lightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backcolor">@color/lightback</item>
+        <item name="cardcolor">@color/lightcard</item>
+        <item name="textcolor">@color/lighttext</item>
+        <item name="toolbarcolor">@color/lightToolbar</item>
+        <item name="imagecolor">@color/lighttext</item>
+        <item name="carddrop">@color/lightcardDrop</item>
         <item name="drawerArrowStyle">@style/DrawerIcon</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="drawerArrowStyle">@style/DrawerIcon</item>
-    </style>
+    
 
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
-        <item name="tabIndicatorColor">#09C8F8</item>
+        <item name="tabIndicatorColor">@color/blue</item>
         <item name="tabIndicatorHeight">2dp</item>
     </style>
     <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/white</item>
+        <item name="color">?attr/imagecolor</item>
     </style>
 
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">

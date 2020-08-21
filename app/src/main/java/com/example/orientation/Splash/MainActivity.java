@@ -45,25 +45,25 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     Context context;
     ArrayList<Schedule> schedules;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
         ImageView iv = (ImageView) findViewById(R.id.imageView);
-        if(isConnected()) {
-            Animation anim = AnimationUtils.loadAnimation(this,R.anim.trans);
+        if (isConnected()) {
+            Animation anim = AnimationUtils.loadAnimation(this, R.anim.trans);
             iv.startAnimation(anim);
             call();
-        }
-        else {
-            Toast.makeText(this,"Failed to Update: Check Internet Connection",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Failed to Update: Check Internet Connection", Toast.LENGTH_SHORT).show();
             callSchedule();
         }
     }
 
 
-    public void call(){
+    public void call() {
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<DetailResponse> detailcall = service.listdetail();
         detailcall.enqueue(new Callback<DetailResponse>() {
@@ -75,29 +75,30 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Sports> sports = detailResponse.getSports();
                 ArrayList<Food> foods = detailResponse.getFood();
                 clearTable();
-                addtable(schedules,departments,sports,foods);
+                addtable(schedules, departments, sports, foods);
                 callSchedule();
             }
 
             @Override
             public void onFailure(Call<DetailResponse> call, Throwable t) {
-                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
                 finishAffinity();
 
             }
         });
     }
-    private void addtable(ArrayList<Schedule> schedules,ArrayList<Department> departments,ArrayList<Sports> sports,ArrayList<Food> foods){
+
+    private void addtable(ArrayList<Schedule> schedules, ArrayList<Department> departments, ArrayList<Sports> sports, ArrayList<Food> foods) {
         ContentValues cv = new ContentValues();
         ContentValues cv1 = new ContentValues();
         ContentValues cv2 = new ContentValues();
         ContentValues cv3 = new ContentValues();
         final SchdDB dbHelper = new SchdDB(context);
         mDatabase = dbHelper.getWritableDatabase();
-        for (int i=0;i<schedules.size();i++) {
-            for (int j=0;j<schedules.get(i).getEvents().size();j++) {
+        for (int i = 0; i < schedules.size(); i++) {
+            for (int j = 0; j < schedules.get(i).getEvents().size(); j++) {
                 Event eve = schedules.get(i).getEvents().get(j);
-                String time = eve.getStime() + "-" +eve.getEtime();
+                String time = eve.getStime() + "-" + eve.getEtime();
                 cv.put(SchdTable.SchdEntry.COLUMN_EVENT, eve.getName());
                 cv.put(SchdTable.SchdEntry.COLUMN_TIME, time);
                 cv.put(SchdTable.SchdEntry.COLUMN_DESC, eve.getDescription());
@@ -110,50 +111,53 @@ public class MainActivity extends AppCompatActivity {
         }
         final DepartDB dbHelper1 = new DepartDB(context);
         mDatabase = dbHelper1.getWritableDatabase();
-        for (int i=0;i<departments.size();i++) {
-                Department department = departments.get(i);
-                cv1.put(DepartTable.DepartEntry.COLUMN_NAME,department.getName());
-                cv1.put(DepartTable.DepartEntry.COLUMN_LURL,department.getLocurl());
-                cv1.put(DepartTable.DepartEntry.COLUMN_IURL,department.getImgurl());
-                cv1.put(DepartTable.DepartEntry.COLUMN_DESC,department.getDescription());
-                mDatabase.insert(DepartTable.DepartEntry.TABLE_NAME, null, cv1);
+        for (int i = 0; i < departments.size(); i++) {
+            Department department = departments.get(i);
+            cv1.put(DepartTable.DepartEntry.COLUMN_NAME, department.getName());
+            cv1.put(DepartTable.DepartEntry.COLUMN_LURL, department.getLocurl());
+            cv1.put(DepartTable.DepartEntry.COLUMN_IURL, department.getImgurl());
+            cv1.put(DepartTable.DepartEntry.COLUMN_DESC, department.getDescription());
+            mDatabase.insert(DepartTable.DepartEntry.TABLE_NAME, null, cv1);
         }
         final SportsDB dbHelper2 = new SportsDB(context);
         mDatabase = dbHelper2.getWritableDatabase();
-        for (int i=0;i<sports.size();i++) {
+        for (int i = 0; i < sports.size(); i++) {
             Sports sp = sports.get(i);
-            cv2.put(SportsTable.SportsEntry.COLUMN_NAME,sp.getName());
-            cv2.put(SportsTable.SportsEntry.COLUMN_LURL,sp.getLocurl());
-            cv2.put(SportsTable.SportsEntry.COLUMN_IURL,sp.getImgurl());
-            cv2.put(SportsTable.SportsEntry.COLUMN_DESC,sp.getDescription());
+            cv2.put(SportsTable.SportsEntry.COLUMN_NAME, sp.getName());
+            cv2.put(SportsTable.SportsEntry.COLUMN_LURL, sp.getLocurl());
+            cv2.put(SportsTable.SportsEntry.COLUMN_IURL, sp.getImgurl());
+            cv2.put(SportsTable.SportsEntry.COLUMN_DESC, sp.getDescription());
             mDatabase.insert(SportsTable.SportsEntry.TABLE_NAME, null, cv2);
         }
         final FoodDB dbHelper3 = new FoodDB(context);
         mDatabase = dbHelper3.getWritableDatabase();
-        for (int i=0;i<foods.size();i++) {
+        for (int i = 0; i < foods.size(); i++) {
             Food food = foods.get(i);
-            cv3.put(FoodTable.FoodEntry.COLUMN_NAME,food.getName());
-            cv3.put(FoodTable.FoodEntry.COLUMN_LURL,food.getLocurl());
-            cv3.put(FoodTable.FoodEntry.COLUMN_IURL,food.getImgurl());
-            cv3.put(FoodTable.FoodEntry.COLUMN_DESC,food.getDescription());
+            cv3.put(FoodTable.FoodEntry.COLUMN_NAME, food.getName());
+            cv3.put(FoodTable.FoodEntry.COLUMN_LURL, food.getLocurl());
+            cv3.put(FoodTable.FoodEntry.COLUMN_IURL, food.getImgurl());
+            cv3.put(FoodTable.FoodEntry.COLUMN_DESC, food.getDescription());
             mDatabase.insert(FoodTable.FoodEntry.TABLE_NAME, null, cv3);
         }
     }
-    private void callSchedule(){
+
+    private void callSchedule() {
         Intent i = new Intent(this, Sched_Activity.class);
         startActivity(i);
-        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }
-    private void clearTable(){
+
+    private void clearTable() {
         this.deleteDatabase("schd.db");
         this.deleteDatabase("food.db");
         this.deleteDatabase("depart.db");
         this.deleteDatabase("sports.db");
     }
+
     public boolean isConnected() {
         boolean connected = false;
         try {
-            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo nInfo = cm.getActiveNetworkInfo();
             connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
             return connected;

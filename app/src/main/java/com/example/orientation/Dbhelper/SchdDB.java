@@ -13,6 +13,7 @@ import com.example.orientation.model.SchdTable.*;
 public class SchdDB extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "schd.db";
     public static final int DATABASE_VERSION = 1;
+
     public SchdDB(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -28,7 +29,7 @@ public class SchdDB extends SQLiteOpenHelper {
                 SchdEntry.COLUMN_LOC + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_LURL + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_IMG + " TEXT NOT NULL, " +
-                SchdEntry.COLUMN_DATE + " TEXT NOT NULL"+
+                SchdEntry.COLUMN_DATE + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_SCHDLIST_TABLE);
 
@@ -36,13 +37,14 @@ public class SchdDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " +SchdEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SchdEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
-    public Cursor showData(String date){
+
+    public Cursor showData(String date) {
         SQLiteDatabase dB = this.getReadableDatabase();
-        String query = "Select * from "+SchdEntry.TABLE_NAME+" where "+SchdEntry.COLUMN_DATE+" LIKE "+"'%"+date+"%'";
-        Cursor cursor = dB.rawQuery(query,null);
+        String query = "Select * from " + SchdEntry.TABLE_NAME + " where " + SchdEntry.COLUMN_DATE + " LIKE " + "'%" + date + "%'";
+        Cursor cursor = dB.rawQuery(query, null);
         return cursor;
     }
 

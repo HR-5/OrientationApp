@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class FoodBottomSheet extends BottomSheetDialogFragment {
     String description;
     TextView desc;
+
     public FoodBottomSheet(String descrip) {
         description = descrip;
     }
@@ -22,7 +23,7 @@ public class FoodBottomSheet extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_sheet,container,false);
+        View view = inflater.inflate(R.layout.bottom_sheet, container, false);
         desc = (TextView) view.findViewById(R.id.descr);
         desc.setText(description);
         return view;

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.orientation.R;
 
-public class DepartmoAdapter extends RecyclerView.Adapter<DepartmoAdapter.ViewHolder>{
+public class DepartmoAdapter extends RecyclerView.Adapter<DepartmoAdapter.ViewHolder> {
     String[] deta;
 
     public DepartmoAdapter() {
@@ -33,7 +33,8 @@ public class DepartmoAdapter extends RecyclerView.Adapter<DepartmoAdapter.ViewHo
     public int getItemCount() {
         return deta.length;
     }
-    public void notify(String[] details){
+
+    public void notify(String[] details) {
         deta = details;
         notifyDataSetChanged();
     }

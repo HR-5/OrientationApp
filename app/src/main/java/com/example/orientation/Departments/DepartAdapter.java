@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+
 import androidx.core.util.Pair;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,12 +53,12 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         if (!cursor.moveToPosition(position)) {
             return;
         }
-        show.add(position,false);
+        show.add(position, false);
         String name = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_NAME));
         names.add(name);
         String iurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_IURL));
         final String lurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LURL));
-        String uri = "@drawable/"+iurl;
+        String uri = "@drawable/" + iurl;
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable res = context.getResources().getDrawable(imageResource);
 
@@ -76,7 +78,7 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         return cursor.getCount();
     }
 
-    public void swapCursor(Cursor newCursor){
+    public void swapCursor(Cursor newCursor) {
         if (cursor != null) {
             cursor.close();
         }
@@ -85,7 +87,8 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
             notifyDataSetChanged();
         }
     }
-    public void direct(String lurl){
+
+    public void direct(String lurl) {
         Uri uri = Uri.parse(lurl);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         context.startActivity(intent);
@@ -108,13 +111,13 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     String name = names.get(pos);
-                    Intent intent = new Intent(context,DepartMotto.class);
-                    intent.putExtra("name",name);
+                    Intent intent = new Intent(context, DepartMotto.class);
+                    intent.putExtra("name", name);
                     Pair[] pair = new Pair[2];
-                    pair[0]= Pair.create((View) depart,"name");
-                    pair[1]= Pair.create((View) img,"imageShare");
-                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,pair);
-                    context.startActivity(intent,options.toBundle());
+                    pair[0] = Pair.create((View) depart, "name");
+                    pair[1] = Pair.create((View) img, "imageShare");
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, pair);
+                    context.startActivity(intent, options.toBundle());
                 }
             });
         }

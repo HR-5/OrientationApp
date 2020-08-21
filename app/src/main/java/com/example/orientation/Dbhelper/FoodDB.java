@@ -43,9 +43,10 @@ public class FoodDB extends SQLiteOpenHelper {
         Cursor cursor = dB.rawQuery(query, null);
         return cursor;
     }
+
     public String showDescr(String name) {
         SQLiteDatabase dB = this.getReadableDatabase();
-        String query = "Select "+ FoodEntry.COLUMN_DESC +" from " + FoodEntry.TABLE_NAME +" where "+FoodEntry.COLUMN_NAME+" LIKE "+"'%"+name+"%'";
+        String query = "Select " + FoodEntry.COLUMN_DESC + " from " + FoodEntry.TABLE_NAME + " where " + FoodEntry.COLUMN_NAME + " LIKE " + "'%" + name + "%'";
         Cursor cursor = dB.rawQuery(query, null);
         cursor.moveToFirst();
         String desc = cursor.getString(cursor.getColumnIndex(FoodEntry.COLUMN_DESC));

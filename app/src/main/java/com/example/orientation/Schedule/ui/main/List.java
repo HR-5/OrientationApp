@@ -25,25 +25,25 @@ public class List extends Fragment {
     String date;
     TextView dateset;
 
-    public List(Context c,String d) {
+    public List(Context c, String d) {
         context = c;
         date = d;
-        descAdapter = new DescAdapter(context,null);
+        descAdapter = new DescAdapter(context, null);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_list,container,false);
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_list, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle);
-         dateset = (TextView) view.findViewById(R.id.date);
+        dateset = (TextView) view.findViewById(R.id.date);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String datei = "DATE:" + date;
+        String datei = date;
         dateset.setText(datei);
         recyclerView.setAdapter(descAdapter);
         recyclerView.setHasFixedSize(true);

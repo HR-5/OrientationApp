@@ -44,9 +44,10 @@ public class DepartDB extends SQLiteOpenHelper {
         Cursor cursor = dB.rawQuery(query, null);
         return cursor;
     }
+
     public Cursor showDatabyName(String name) {
         SQLiteDatabase dB = this.getReadableDatabase();
-        String query = "Select * from " + DepartEntry.TABLE_NAME +" where "+DepartEntry.COLUMN_NAME+" LIKE "+"'%"+name+"%'";
+        String query = "Select * from " + DepartEntry.TABLE_NAME + " where " + DepartEntry.COLUMN_NAME + " LIKE " + "'%" + name + "%'";
         Cursor cursor = dB.rawQuery(query, null);
         return cursor;
     }

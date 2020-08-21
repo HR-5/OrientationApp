@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -13,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Adapter;
@@ -34,6 +36,16 @@ public class DepartMotto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String mode = getPref();
+        if(mode == null){
+            setTheme(R.style.AppTheme);
+        }
+        else if(mode.equals("Dark")){
+            setTheme(R.style.AppTheme);
+        }
+        else if(mode.equals("Light")){
+            setTheme(R.style.lightTheme);
+        }
         setContentView(R.layout.depart_detail);
         Bundle bundle = getIntent().getExtras();
         String departName = bundle.getString("name");
@@ -79,11 +91,16 @@ public class DepartMotto extends AppCompatActivity {
         });
     }
 
+    private String getPref(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getString("Mode", null);
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-    public void direct(View view){
+
+    public void direct(View view) {
         Uri uri = Uri.parse(lurl);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         this.startActivity(intent);

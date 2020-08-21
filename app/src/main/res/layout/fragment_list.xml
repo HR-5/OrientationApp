@@ -4,28 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Schedule.ui.main.List">
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical">
-  <TextView
-      android:id="@+id/date"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="DATE:15/08/2020"
-      android:textColor="#FFFFFF"
-      android:layout_gravity="center"
-      android:textStyle="italic"
-      android:fontFamily="sans-serif-condensed-medium"
-      android:background="#00010a"
-      android:textAlignment="center"
-      android:textSize="20sp"
-      android:paddingBottom="5dp"
-      android:paddingTop="5dp"/>
 
-  <androidx.recyclerview.widget.RecyclerView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/recycle"/>
-  </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?attr/backcolor"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="DATE:15/08/2020"
+            android:textAlignment="center"
+            android:textColor="?attr/textcolor"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </FrameLayout>

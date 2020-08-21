@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/backcolor"
         android:orientation="vertical"
         tools:context=".Sports.SportsActivity">
 
@@ -30,17 +31,43 @@
                 android:gravity="center"
                 android:minHeight="?actionBarSize"
                 android:padding="@dimen/appbar_padding"
-                android:text="Sports Centres"
+                android:text="Settings"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 android:textColor="?attr/textcolor"
                 android:textSize="22sp" />
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/sportrecycle"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/backcolor" />
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            app:cardBackgroundColor="?attr/cardcolor"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable Drak Mode"
+                    android:textColor="?attr/textcolor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/switchmode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Night Mode"
+                    android:textColor="?attr/textcolor" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -55,4 +82,6 @@
         app:itemIconTint="@color/blue"
         app:itemTextColor="?attr/textcolor"
         app:menu="@menu/drawermenu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
+

@@ -3,7 +3,9 @@ package com.example.orientation.Schedule.ui.main;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import com.example.orientation.R;
+
 import android.view.ViewGroup;
 import android.widget.TextView;
 
