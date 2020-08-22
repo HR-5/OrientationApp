@@ -25,25 +25,29 @@ import com.google.android.material.navigation.NavigationView;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Switch mySwitch;
+    private Switch nswitch;
     int i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String mode = getPref();
-        if(mode == null){
+        String[] options = getPref();
+        if(options[0] == null){
             i= 1;
             setTheme(R.style.AppTheme);
         }
-        else if(mode.equals("Dark")){
+        else if(options[0].equals("Dark")){
             i = 1;
             setTheme(R.style.AppTheme);
         }
-        else if(mode.equals("Light")){
+        else if(options[0].equals("Light")){
             i = 2;
             setTheme(R.style.lightTheme);
         }
         setContentView(R.layout.activity_settings);
         mySwitch = (Switch) findViewById(R.id.switchmode);
+        nswitch = (Switch) findViewById(R.id.notificationswitch);
+        final Notificationsetter notifi = new Notificationsetter(this);
+        nswitch.setChecked(notifi.checkNotification(options[1]));
         if (i ==1){
             mySwitch.setChecked(true);
         }
@@ -69,6 +73,22 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 }
             }
         });
+        nswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    notifi.setNotification();
+                    editor.putString("Notification","On");
+                    editor.apply();
+                }
+                else {
+                    notifi.stopNotification();
+                    editor.putString("Notification","Off");
+                    editor.apply();
+                }
+            }
+        });
+
     }
     private void setNav(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,9 +106,12 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
     }
-    private String getPref(){
+    private String[] getPref(){
+        String[] options = new String[2];
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getString("Mode", null);
+        options[0] = preferences.getString("Mode", null);
+        options[1] = preferences.getString("Notification", null);
+        return options;
     }
     private void restart(){
         Intent i = new Intent(this,SettingsActivity.class);

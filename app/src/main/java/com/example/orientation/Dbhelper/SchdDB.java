@@ -7,8 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.orientation.model.Event;
 import com.example.orientation.model.SchdTable;
 import com.example.orientation.model.SchdTable.*;
+import com.example.orientation.model.Schedule;
+
+import java.util.ArrayList;
 
 public class SchdDB extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "schd.db";
@@ -46,6 +50,63 @@ public class SchdDB extends SQLiteOpenHelper {
         String query = "Select * from " + SchdEntry.TABLE_NAME + " where " + SchdEntry.COLUMN_DATE + " LIKE " + "'%" + date + "%'";
         Cursor cursor = dB.rawQuery(query, null);
         return cursor;
+    }
+
+    public ArrayList<String> getDate() {
+        ArrayList<String> dates = new ArrayList<>();
+        SQLiteDatabase dB = this.getReadableDatabase();
+        String query = "Select DISTINCT " + SchdEntry.COLUMN_DATE + " from " + SchdEntry.TABLE_NAME;
+        Cursor cursor = dB.rawQuery(query, null);
+        cursor.moveToFirst();
+        int pos = 0;
+        while (cursor.moveToPosition(pos)) {
+            String date = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_DATE));
+            dates.add(pos, date);
+            pos++;
+        }
+        return dates;
+    }
+
+    public ArrayList<Schedule> showAllData() {
+        ArrayList<Schedule> schedules = new ArrayList<>();
+        ArrayList<Event> eventset = new ArrayList<>();
+        SQLiteDatabase dB = this.getReadableDatabase();
+        String query = "Select * from " + SchdEntry.TABLE_NAME + " Order by " + SchdEntry.COLUMN_DATE;;
+        Cursor cursor = dB.rawQuery(query, null);
+        cursor.moveToFirst();
+        int pos = 0;
+        int flag = 0;
+        String da = null;
+        while (cursor.moveToPosition(pos)) {
+            String name = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_EVENT));;
+            String stime = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_TIME)).split("-")[0];
+            String etime = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_TIME)).split("-")[1];
+            String description = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_DESC));
+            String location = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_LOC));
+            String locurl = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_LURL));
+            String imgname = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_IMG));
+            Event oevent = new Event(name,stime,etime,description,location,locurl,imgname);
+            String date = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_DATE));
+            if(pos == 0) {
+                eventset.add(oevent);
+                da = date;
+                flag = 0;
+            }
+            else if (da.equals(date)){
+                eventset.add(oevent);
+                da = date;
+            }
+            else {
+                    schedules.add(flag,new Schedule(da,eventset));
+                    eventset = new ArrayList<>();
+                    eventset.add(oevent);
+                    da = date;
+                    flag++;
+            }
+            pos++;
+        }
+        schedules.add(flag,new Schedule(da,eventset));
+        return schedules;
     }
 
 }

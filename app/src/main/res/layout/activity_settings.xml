@@ -54,7 +54,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enable Drak Mode"
+                    android:text="Enable Dark Mode"
                     android:textColor="?attr/textcolor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -65,6 +65,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Night Mode"
+                    android:textColor="?attr/textcolor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notification"
+                    android:layout_marginTop="20dp"
+                    android:textColor="?attr/textcolor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <Switch
+                    android:id="@+id/notificationswitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Turn On Notification"
                     android:textColor="?attr/textcolor" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

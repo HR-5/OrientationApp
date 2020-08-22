@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,6 +25,7 @@ import com.example.orientation.Dbhelper.SchdDB;
 import com.example.orientation.Dbhelper.SportsDB;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
+import com.example.orientation.Settings.Notificationsetter;
 import com.example.orientation.model.DepartTable;
 import com.example.orientation.model.Department;
 import com.example.orientation.model.Event;
@@ -35,6 +38,7 @@ import com.example.orientation.model.Sports;
 import com.example.orientation.model.SportsTable;
 import com.example.orientation.network.RetrofitClientInstance;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -45,12 +49,14 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     Context context;
     ArrayList<Schedule> schedules;
+    ArrayList<String> dates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+        dates = new ArrayList<>();
         ImageView iv = (ImageView) findViewById(R.id.imageView);
         if (isConnected()) {
             Animation anim = AnimationUtils.loadAnimation(this, R.anim.trans);
@@ -76,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Food> foods = detailResponse.getFood();
                 clearTable();
                 addtable(schedules, departments, sports, foods);
+                if(new Notificationsetter().checkNotification(getPref()))
+                    new SetRemainder(context);
+                for (int i = 0; i < schedules.size(); i++) {
+                    dates.add(i,schedules.get(i).getDate());
+                }
                 callSchedule();
             }
 
@@ -86,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private String getPref() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getString("Notification", null);
     }
 
     private void addtable(ArrayList<Schedule> schedules, ArrayList<Department> departments, ArrayList<Sports> sports, ArrayList<Food> foods) {
@@ -143,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void callSchedule() {
         Intent i = new Intent(this, Sched_Activity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("dates",(Serializable) dates);
+        i.putExtra("bundle",bundle);
         startActivity(i);
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }

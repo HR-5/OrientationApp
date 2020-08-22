@@ -6,6 +6,14 @@ public class Schedule {
     public String date;
     public ArrayList<Event> events;
 
+    public Schedule(String date, ArrayList<Event> events) {
+        this.date = date;
+        this.events = events;
+    }
+
+    public Schedule() {
+    }
+
     public String getDate() {
         return date;
     }

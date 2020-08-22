@@ -9,6 +9,19 @@ public class Event {
     public String locurl;
     public String imgname;
 
+    public Event(String name, String stime, String etime, String description, String location, String locurl, String imgname) {
+        this.name = name;
+        this.stime = stime;
+        this.etime = etime;
+        this.description = description;
+        this.location = location;
+        this.locurl = locurl;
+        this.imgname = imgname;
+    }
+
+    public Event() {
+    }
+
     public String getimgname() {
         return imgname;
     }

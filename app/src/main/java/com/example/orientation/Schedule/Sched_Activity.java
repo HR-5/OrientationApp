@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.orientation.Dbhelper.SchdDB;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.Food.FoodActivity;
@@ -26,23 +27,30 @@ import android.view.MenuItem;
 
 import com.example.orientation.Schedule.ui.main.SectionsPagerAdapter;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+
 public class Sched_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    ArrayList<String> dates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dates = new ArrayList<>();
+        SchdDB db = new SchdDB(this);
+        dates = db.getDate();
         String mode = getPref();
-        if(mode == null){
+        if (mode == null) {
             setTheme(R.style.AppTheme);
-        }
-        else if(mode.equals("Dark")){
+        } else if (mode.equals("Dark")) {
             setTheme(R.style.AppTheme);
-        }
-        else if(mode.equals("Light")){
+        } else if (mode.equals("Light")) {
             setTheme(R.style.lightTheme);
         }
         setContentView(R.layout.activity_sched_);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), dates);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -65,9 +73,16 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
 
     }
-    private String getPref(){
+
+    private String getPref() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         return preferences.getString("Mode", null);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("dates", (Serializable) dates);
     }
 
     @Override
