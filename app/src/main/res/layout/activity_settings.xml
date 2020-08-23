@@ -65,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Night Mode"
+                    android:theme="@style/SwitchTheme"
                     android:textColor="?attr/textcolor" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:theme="@style/SwitchTheme"
                     android:text="Turn On Notification"
                     android:textColor="?attr/textcolor" />
             </LinearLayout>

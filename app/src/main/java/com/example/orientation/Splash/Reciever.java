@@ -29,7 +29,7 @@ public class Reciever extends BroadcastReceiver {
                 .setContentTitle(event)
                 .setContentText(des)
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.mipmap.ic_launcher);
+                .setSmallIcon(R.drawable.notify);
         notificationManager.notify(1, notification.build());
         Intent serviceIntent = new Intent(context, Myservice.class);
         if(count == total-1)

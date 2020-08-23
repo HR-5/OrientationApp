@@ -5,7 +5,10 @@ import android.app.Service;
 import android.content.Context;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 import android.content.Intent;
@@ -13,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.example.orientation.Dbhelper.SchdDB;
@@ -50,13 +54,20 @@ public class SetRemainder {
 
     private String[] getdate(Schedule schedule) {
         String date = schedule.getDate();
-        String[] dmy = date.split("/");
+        String[] dmy = date.split(" ");
         return dmy;
     }
 
     private Calendar setdate(String time, String[] dmy) {
         int year = Integer.parseInt(dmy[2]);
-        int month = Integer.parseInt(dmy[1]);
+        String month = dmy[1];
+        Calendar ca = Calendar.getInstance();
+        try {
+            Date date = new SimpleDateFormat("MMMMM").parse(month);
+            ca.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         int date = Integer.parseInt(dmy[0]);
         String[] hrmin = time.split(":");
         int hour = Integer.parseInt(hrmin[0]);
@@ -64,7 +75,7 @@ public class SetRemainder {
         Calendar calendar = null;
         calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
-        calendar.set(year, month - 1, date, hour - 1, min, 0);
+        calendar.set(year, ca.get(Calendar.MONTH), date, hour - 1, min, 0);
         return calendar;
     }
 
@@ -90,8 +101,7 @@ public class SetRemainder {
                     eventName.add(count, event.getName());
                     stime.add(count, event.getStime());
                     venue.add(count, event.getLocation());
-                }
-                else if(calendar.getTimeInMillis()-cal.getTimeInMillis() < 3600*1000){
+                } else if (calendar.getTimeInMillis() - cal.getTimeInMillis() < 3600 * 1000) {
                     count++;
                     calendars.add(count, calendar.getTimeInMillis());
                     eventName.add(count, event.getName());
@@ -100,7 +110,7 @@ public class SetRemainder {
                 }
             }
         }
-        if(calendars.size()!=0) {
+        if (calendars.size() != 0) {
             Intent intent = new Intent(context, Myservice.class);
             Bundle args = new Bundle();
             args.putSerializable("cal", (Serializable) calendars);

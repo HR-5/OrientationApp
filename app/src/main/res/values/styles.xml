@@ -32,7 +32,10 @@
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
     </style>
-    
+
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/blue</item>
+    </style>
 
 
 
@@ -45,9 +48,10 @@
     </style>
 
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenEnterAnimation">@anim/fragment_fade_enter</item>
         <item name="android:activityOpenExitAnimation">@anim/stay</item>
-        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fragment_fade_enter
+        </item>
         <item name="android:activityCloseExitAnimation">@anim/stay</item>
     </style>
 

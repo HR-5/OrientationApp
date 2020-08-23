@@ -11,13 +11,18 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.orientation.API.GetDataService;
 import com.example.orientation.Dbhelper.DepartDB;
 import com.example.orientation.Dbhelper.FoodDB;
@@ -49,23 +54,37 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     Context context;
     ArrayList<Schedule> schedules;
-    ArrayList<String> dates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        dates = new ArrayList<>();
         ImageView iv = (ImageView) findViewById(R.id.imageView);
+        final TextView title = (TextView) findViewById(R.id.title);
+        title.setVisibility(View.INVISIBLE);
         if (isConnected()) {
-            Animation anim = AnimationUtils.loadAnimation(this, R.anim.trans);
-            iv.startAnimation(anim);
+            YoYo.with(Techniques.Landing)
+                    .duration(2000)
+                    .playOn(iv);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    title.setVisibility(View.VISIBLE);
+                    anim(title);
+
+                }
+            },1000);
             call();
         } else {
             Toast.makeText(this, "Failed to Update: Check Internet Connection", Toast.LENGTH_SHORT).show();
             callSchedule();
         }
+    }
+    private void anim(TextView title){
+        YoYo.with(Techniques.FlipInX)
+                .duration(2000)
+                .playOn(title);
     }
 
 
@@ -84,9 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 addtable(schedules, departments, sports, foods);
                 if(new Notificationsetter().checkNotification(getPref()))
                     new SetRemainder(context);
-                for (int i = 0; i < schedules.size(); i++) {
-                    dates.add(i,schedules.get(i).getDate());
-                }
                 callSchedule();
             }
 
@@ -158,9 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void callSchedule() {
         Intent i = new Intent(this, Sched_Activity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("dates",(Serializable) dates);
-        i.putExtra("bundle",bundle);
         startActivity(i);
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }

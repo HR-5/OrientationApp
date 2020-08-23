@@ -33,14 +33,14 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="425dp"
         android:fontFamily="@font/mysans"
         android:gravity="center_horizontal"
-        android:text="National Institute of \n Technology \n Orientation'20"
+        android:text="@string/title"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="35sp"

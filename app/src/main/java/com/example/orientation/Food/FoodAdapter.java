@@ -20,6 +20,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.orientation.Dbhelper.FoodDB;
 import com.example.orientation.R;
 import com.example.orientation.model.FoodTable;
@@ -53,12 +55,20 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         String name = cursor.getString(cursor.getColumnIndex(FoodTable.FoodEntry.COLUMN_NAME));
         String iurl = cursor.getString(cursor.getColumnIndex(FoodTable.FoodEntry.COLUMN_IURL));
         final String lurl = cursor.getString(cursor.getColumnIndex(FoodTable.FoodEntry.COLUMN_LURL));
-        String uri = "@drawable/" + iurl;
-        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        Drawable res = context.getResources().getDrawable(imageResource);
-
+        if(iurl.equals("null")) {
+            String uri = "@drawable/null_img";
+            int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+            Drawable res = context.getResources().getDrawable(imageResource);
+            holder.img.setImageDrawable(res);
+        }
+        else {
+            Glide.with(context)
+                    .load(iurl)
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.img);
+        }
         holder.foodstall.setText(name);
-        holder.img.setImageDrawable(res);
         holder.maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

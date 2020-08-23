@@ -1,5 +1,7 @@
 package com.example.orientation.Departments;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +28,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.orientation.Dbhelper.DepartDB;
 import com.example.orientation.R;
 import com.example.orientation.model.DepartTable;
@@ -49,7 +57,6 @@ public class DepartMotto extends AppCompatActivity {
         setContentView(R.layout.depart_detail);
         Bundle bundle = getIntent().getExtras();
         String departName = bundle.getString("name");
-        ImageView img = (ImageView) findViewById(R.id.img);
         ImageView imgback = (ImageView) findViewById(R.id.mapback);
         TextView getdirect = (TextView) findViewById(R.id.direct);
         TextView nameset = (TextView) findViewById(R.id.name);
@@ -64,18 +71,9 @@ public class DepartMotto extends AppCompatActivity {
         String[] descr = desc.split("\r\n\r\n");
         String[] list = descr[1].split("\r\n");
         String vision = descr[0], mission = descr[1];
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.ll);
-        DepartmoAdapter departmoAdapter = new DepartmoAdapter();
-        recyclerView.setAdapter(departmoAdapter);
-        recyclerView.setHasFixedSize(true);
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
-        recyclerView.setLayoutManager(layoutManager);
-        departmoAdapter.notify(list);
+        setAdapter(list);
         nameset.setText(name);
-        String uri = "@drawable/" + iurl;
-        int imageResource = this.getResources().getIdentifier(uri, null, this.getPackageName());
-        Drawable res = this.getResources().getDrawable(imageResource);
-        img.setBackground(res);
+        setImage(iurl);
         visionset.setText(vision);
         imgback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +87,27 @@ public class DepartMotto extends AppCompatActivity {
                 direct(null);
             }
         });
+    }
+
+    private void setImage(String iurl){
+        final ImageView img = (ImageView) findViewById(R.id.img);
+        Glide.with(this).asBitmap().load(iurl).into(new SimpleTarget<Bitmap>(300, 300) {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                Drawable drawable = new BitmapDrawable(getResources(), resource);
+                img.setBackground(drawable);
+            }
+        });
+    }
+
+    private void setAdapter(String[] list){
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.ll);
+        DepartmoAdapter departmoAdapter = new DepartmoAdapter();
+        recyclerView.setAdapter(departmoAdapter);
+        recyclerView.setHasFixedSize(true);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        recyclerView.setLayoutManager(layoutManager);
+        departmoAdapter.notify(list);
     }
 
     private String getPref(){

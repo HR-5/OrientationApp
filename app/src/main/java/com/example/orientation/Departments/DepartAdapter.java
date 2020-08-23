@@ -22,6 +22,8 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.orientation.R;
 import com.example.orientation.model.DepartTable;
 import com.example.orientation.model.Department;
@@ -58,12 +60,17 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         names.add(name);
         String iurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_IURL));
         final String lurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LURL));
-        String uri = "@drawable/" + iurl;
-        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        Drawable res = context.getResources().getDrawable(imageResource);
+//        String uri = "@drawable/" + iurl;
+//        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+//        Drawable res = context.getResources().getDrawable(imageResource);
 
         holder.depart.setText(name);
-        holder.img.setImageDrawable(res);
+        Glide.with(context)
+                .load(iurl)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.img);
+//        holder.img.setImageDrawable(res);
         holder.maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

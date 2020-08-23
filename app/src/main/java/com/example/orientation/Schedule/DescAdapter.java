@@ -24,6 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.orientation.R;
 import com.example.orientation.model.SchdTable;
 
@@ -62,13 +64,20 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         String iurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_IMG));
         String loc = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LOC));
         final String lurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LURL));
-        String uri = "@drawable/" + iurl;
-        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        Drawable res = context.getResources().getDrawable(imageResource);
-
-        holder.eveset.setText(event);
+        if(iurl.equals("null")) {
+            String uri = "@drawable/null";
+            int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+            Drawable res = context.getResources().getDrawable(imageResource);
+            holder.img.setImageDrawable(res);
+        }
+        else {
+            Glide.with(context)
+                    .load(iurl)
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.img);
+        }        holder.eveset.setText(event);
         holder.timeset.setText(time);
-        holder.img.setImageDrawable(res);
         holder.desset.setText(des);
         holder.locset.setText(loc);
         holder.dir.setOnClickListener(new View.OnClickListener() {

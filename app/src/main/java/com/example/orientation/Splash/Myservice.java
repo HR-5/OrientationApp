@@ -48,7 +48,7 @@ public class Myservice extends Service {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Orientation Schedule")
                 .setContentText("Schedules will be shown here")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.notify)
                 .setContentIntent(pendingIntent)
                 .build();
         startForeground(1, notification);

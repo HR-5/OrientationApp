@@ -40,6 +40,7 @@
             android:id="@+id/sportrecycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layoutAnimation="@anim/anim_fall_down"
             android:background="?attr/backcolor" />
     </LinearLayout>
 
