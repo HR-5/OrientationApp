@@ -18,6 +18,10 @@
             android:id="@+id/depts"
             android:icon="@drawable/business"
             android:title="Departments" />
+        <item
+            android:id="@+id/attend"
+            android:icon="@drawable/attendance"
+            android:title="Attendance Manager" />
     </group>
     <item android:title="Communicate">
         <menu>

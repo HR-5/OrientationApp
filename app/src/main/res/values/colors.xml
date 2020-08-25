@@ -14,4 +14,5 @@
     <color name="lighttext">#212121</color>
     <color name="lightcard">#FFFFFF</color>
     <color name="lightcardDrop">#DDDDDD</color>
+    <color name="red">#D00000</color>
 </resources>

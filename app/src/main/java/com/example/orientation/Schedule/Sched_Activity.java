@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.orientation.Attendance.AttendanceActivity;
 import com.example.orientation.Dbhelper.SchdDB;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Features.FeatureActivity;
@@ -71,7 +72,7 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
         navigationView.getMenu().getItem(1).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
-
+        navigationView.getMenu().getItem(4).setActionView(R.layout.arrow);
     }
 
     private String getPref() {
@@ -114,6 +115,10 @@ public class Sched_Activity extends AppCompatActivity implements NavigationView.
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
+            case R.id.attend:
+                i = new Intent(Sched_Activity.this, AttendanceActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         }
         DrawerLayout drawer = findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);

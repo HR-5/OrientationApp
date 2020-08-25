@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void anim(TextView title){
         YoYo.with(Techniques.FlipInX)
-                .duration(2000)
+                .duration(1500)
                 .playOn(title);
     }
 

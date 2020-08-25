@@ -7,27 +7,37 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:allowBackup="true"
         android:name=".Splash.App"
+        android:allowBackup="true"
         android:icon="@drawable/splashscreen"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Settings.SettingsActivity">
+        <activity android:name=".Attendance.AttendanceActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" >
+
         </activity>
-        <activity android:name=".Features.FeatureActivity"></activity>
+        <activity android:name=".Settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" ></activity>
+        <activity android:name=".Features.FeatureActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" ></activity>
         <activity
             android:name=".Departments.DepartMotto"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity" >
+        </activity>
         <activity
             android:name=".Departments.DepartActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity" >
+        </activity>
         <activity
             android:name=".Food.FoodActivity"
             android:screenOrientation="portrait"
@@ -51,8 +61,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".Splash.Myservice"/>
-        <receiver android:name=".Splash.Reciever"/>
+
+
+        <service android:name=".Splash.Myservice" />
+
+        <receiver android:name=".Splash.Reciever" />
     </application>
 
 </manifest>

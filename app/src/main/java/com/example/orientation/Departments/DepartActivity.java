@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
+import com.example.orientation.Attendance.AttendanceActivity;
 import com.example.orientation.Dbhelper.DepartDB;
 import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.Food.FoodActivity;
@@ -22,6 +23,7 @@ import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
 import com.example.orientation.Settings.SettingsActivity;
 import com.example.orientation.Sports.SportsActivity;
+import com.example.orientation.model.Department;
 import com.google.android.material.navigation.NavigationView;
 
 public class DepartActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,16 +31,7 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String mode = getPref();
-        if(mode == null){
-            setTheme(R.style.AppTheme);
-        }
-        else if(mode.equals("Dark")){
-            setTheme(R.style.AppTheme);
-        }
-        else if(mode.equals("Light")){
-            setTheme(R.style.lightTheme);
-        }
+        getPref();
         setContentView(R.layout.activity_depart);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,6 +48,8 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
         navigationView.getMenu().getItem(1).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(4).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(4).setActionView(R.layout.arrow);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.departrecycle);
         DepartAdapter departAdapter = new DepartAdapter(this, null);
@@ -65,9 +60,17 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
         DepartDB db = new DepartDB(this);
         departAdapter.swapCursor(db.showData());
     }
-    private String getPref(){
+
+    private void getPref() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        return preferences.getString("Mode", null);
+        String mode = preferences.getString("Mode", null);
+        if (mode == null) {
+            setTheme(R.style.AppTheme);
+        } else if (mode.equals("Dark")) {
+            setTheme(R.style.AppTheme);
+        } else if (mode.equals("Light")) {
+            setTheme(R.style.lightTheme);
+        }
     }
 
     @Override
@@ -99,6 +102,10 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
+            case R.id.attend:
+                i = new Intent(DepartActivity.this, AttendanceActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         }
         DrawerLayout drawer = findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);

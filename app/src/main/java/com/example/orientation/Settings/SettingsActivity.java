@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import com.example.orientation.Attendance.AttendanceActivity;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.Food.FoodActivity;
@@ -105,6 +106,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         navigationView.getMenu().getItem(1).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
+        navigationView.getMenu().getItem(4).setActionView(R.layout.arrow);
     }
     private String[] getPref(){
         String[] options = new String[2];
@@ -149,6 +151,10 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
+            case R.id.attend:
+                i = new Intent(SettingsActivity.this, AttendanceActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         }
         DrawerLayout drawer = findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
+import com.example.orientation.Attendance.AttendanceActivity;
 import com.example.orientation.Dbhelper.SportsDB;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Features.FeatureActivity;
@@ -55,7 +56,7 @@ public class SportsActivity extends AppCompatActivity implements NavigationView.
         navigationView.getMenu().getItem(1).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(2).setActionView(R.layout.arrow);
         navigationView.getMenu().getItem(3).setActionView(R.layout.arrow);
-
+        navigationView.getMenu().getItem(4).setActionView(R.layout.arrow);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sportrecycle);
         SportAdapter sportAdapter = new SportAdapter(this, null);
         recyclerView.setAdapter(sportAdapter);
@@ -99,6 +100,10 @@ public class SportsActivity extends AppCompatActivity implements NavigationView.
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
+            case R.id.attend:
+                i = new Intent(SportsActivity.this, AttendanceActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         }
         DrawerLayout drawer = findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
