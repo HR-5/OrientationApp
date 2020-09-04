@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/carddrop"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mysans"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="12/08/2020"
+        android:textAlignment="center"
+        android:textColor="?attr/textcolor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgt"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingRight="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tick" />
+
+    <ImageView
+        android:id="@+id/point"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintEnd_toStartOf="@+id/date"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pointer"
+        tools:ignore="VectorDrawableCompat" />
+</androidx.constraintlayout.widget.ConstraintLayout>

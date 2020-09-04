@@ -3,9 +3,11 @@ package com.example.orientation.Attendance;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import com.example.orientation.model.SubjectData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -60,6 +62,13 @@ public class AttendRepo {
         AttendanceDb.databaseWriteExecutor.execute(() -> {
             attendanceDao.delete(word);
         });
+    }
+
+    SubjectData getSu(String subname){
+//        String query = "SELECT * from Attendance " + "WHERE SubName LIKE '%"+subname+"%'";
+//        SimpleSQLiteQuery query1 = new SimpleSQLiteQuery(query);
+//        return attendanceDao.getData(query1);
+        return attendanceDao.getSub(subname);
     }
 
 }

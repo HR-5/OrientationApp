@@ -7,10 +7,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.RawQuery;
 import androidx.room.Update;
+import androidx.sqlite.db.SupportSQLiteQuery;
 
 import com.example.orientation.model.SubjectData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -33,5 +36,11 @@ public interface AttendanceDao {
 
     @Update
     void update(SubjectData subjectData);
+
+    @Query("SELECT * from Attendance " + "WHERE SubName LIKE :sub")
+    SubjectData getSub(String sub);
+
+    @RawQuery
+    SubjectData getData(SupportSQLiteQuery query);
 
 }

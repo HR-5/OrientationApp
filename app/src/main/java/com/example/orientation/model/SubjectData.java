@@ -24,11 +24,18 @@ public class SubjectData {
     @ColumnInfo(name = "AttendCount")
     private int attendnum;
 
+    @ColumnInfo(name = "Dates")
+    ArrayList<String> dates;
 
-    public SubjectData(@NonNull String subjectName, int totalClass, int attendnum) {
+    @ColumnInfo(name = "Attended")
+    ArrayList<String> attend;
+
+    public SubjectData(@NonNull String subjectName, int totalClass, int attendnum, ArrayList<String> dates,ArrayList<String> attend) {
         this.subjectName = subjectName;
         this.totalClass = totalClass;
         this.attendnum = attendnum;
+        this.dates = dates;
+        this.attend = attend;
     }
 
     @NonNull
@@ -44,4 +51,11 @@ public class SubjectData {
         return attendnum;
     }
 
+    public ArrayList<String> getDates() {
+        return dates;
+    }
+
+    public ArrayList<String> getAttend() {
+        return attend;
+    }
 }

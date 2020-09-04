@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.orientation.R;
 import com.example.orientation.model.SubjectData;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.ViewHolder>{
@@ -22,6 +25,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
     List<SubjectData> data;
     AttendViewModel viewModel;
     Context mc;
+    ArrayList<String> d = new ArrayList<>();
+    ArrayList<String> attendance = new ArrayList<>();
 
 
 
@@ -54,13 +59,19 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         holder.yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                good(sub,tot,att);
+                good(sub,tot,att,position);
             }
         });
         holder.no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bad(sub,tot,att);
+                bad(sub,tot,att,position);
+            }
+        });
+        holder.graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showStats(sub);
             }
         });
     }
@@ -72,16 +83,41 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
         return 0;
     }
 
-    private void good(String sub,int tot,int att){
+    private void showStats(String sub){
+        Async async = new Async(sub,viewModel.application,mc);
+        async.execute();
+    }
+
+    private void good(String sub,int tot,int att,int pos){
         tot++;
         att++;
-        SubjectData value = new SubjectData(sub,tot,att);
+        SimpleDateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");;
+        String date;
+        Calendar calendar = Calendar.getInstance();
+        date = dateFormat.format(calendar.getTime());
+        d.clear();
+        d.addAll(data.get(pos).getDates());
+        d.add(date);
+        attendance.clear();
+        attendance.addAll(data.get(pos).getAttend());
+        attendance.add("true");
+        SubjectData value = new SubjectData(sub,tot,att,d,attendance);
         viewModel.update(value);
     }
 
-    private void bad(String sub,int tot,int att){
+    private void bad(String sub,int tot,int att,int pos){
         tot++;
-        SubjectData value = new SubjectData(sub,tot,att);
+        SimpleDateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");;
+        String date;
+        Calendar calendar = Calendar.getInstance();
+        date = dateFormat.format(calendar.getTime());
+        d.clear();
+        d.addAll(data.get(pos).getDates());
+        d.add(date);
+        attendance.clear();
+        attendance.addAll(data.get(pos).getAttend());
+        attendance.add("false");
+        SubjectData value = new SubjectData(sub,tot,att,d,attendance);
         viewModel.update(value);
     }
 
@@ -98,7 +134,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView name,show;
         private TextView attend;
-        ImageView yes,no;
+        ImageView yes,no,graph;
         ProgressBar progressBar;
         public SubjectData subjectData;
 
@@ -108,9 +144,10 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
             attend = (TextView) itemView.findViewById(R.id.attend);
             yes = (ImageView) itemView.findViewById(R.id.yes);
             no = (ImageView) itemView.findViewById(R.id.no);
+            graph = (ImageView) itemView.findViewById(R.id.graph);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressSet);
             show = (TextView) itemView.findViewById(R.id.showProg);
-            subjectData = new SubjectData("dummy",0,0);
+            subjectData = new SubjectData("dummy",0,0,d,attendance);
         }
     }
 }

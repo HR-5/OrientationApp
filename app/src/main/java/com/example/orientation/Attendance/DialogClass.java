@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import com.example.orientation.R;
 import com.example.orientation.model.SubjectData;
 
+import java.util.ArrayList;
+
 public class DialogClass extends Dialog implements android.view.View.OnClickListener {
     Button add;
     EditText subname;
@@ -53,7 +55,9 @@ public class DialogClass extends Dialog implements android.view.View.OnClickList
                 }
                 else {
                     name = subname.getText().toString().toUpperCase();
-                    SubjectData data = new SubjectData(name,0,0);
+                    ArrayList<String> dates = new ArrayList<>();
+                    ArrayList<String> arr = new ArrayList<>();
+                    SubjectData data = new SubjectData(name,0,0,dates,arr);
                     viewModel.insert(data);
                 }
                 break;

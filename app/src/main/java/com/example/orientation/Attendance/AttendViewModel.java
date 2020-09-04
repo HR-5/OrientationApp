@@ -14,11 +14,13 @@ public class AttendViewModel extends AndroidViewModel {
 
     private AttendRepo mRepository;
     private LiveData<List<SubjectData>> data;
+    public Application application;
 
     public AttendViewModel(@NonNull Application application) {
         super(application);
         mRepository = new AttendRepo(application);
         data = mRepository.getAllWords();
+        this.application = application;
     }
 
     LiveData<List<SubjectData>> getAllWords() {
@@ -44,4 +46,6 @@ public class AttendViewModel extends AndroidViewModel {
     void delete(SubjectData data){
         mRepository.delete(data);
     }
+
+    SubjectData getSub(String subname){return mRepository.getSu(subname);}
 }

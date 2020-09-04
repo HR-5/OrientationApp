@@ -14,7 +14,8 @@ import com.example.orientation.model.SubjectData;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {SubjectData.class}, version = 1,exportSchema = false)
+@Database(entities = {SubjectData.class}, version = 3,exportSchema = false)
+@TypeConverters({Converter.class})
 public abstract class AttendanceDb extends RoomDatabase {
 
     abstract AttendanceDao attendanceDao();
