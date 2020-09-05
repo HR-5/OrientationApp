@@ -2,32 +2,48 @@ package com.example.orientation.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.orientation.Attendance.AttendanceActivity;
 import com.example.orientation.Departments.DepartActivity;
 import com.example.orientation.Features.FeatureActivity;
 import com.example.orientation.Food.FoodActivity;
+import com.example.orientation.Login.LoginActivity;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
 import com.example.orientation.Sports.SportsActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Switch mySwitch;
     private Switch nswitch;
+    ImageView logout;
+    TextView signout,delete;
     int i;
+    AlertDialog alertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +61,35 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             setTheme(R.style.lightTheme);
         }
         setContentView(R.layout.activity_settings);
+        logout = (ImageView) findViewById(R.id.logout);
+        if(i==2){
+            String uri = "@drawable/logout";
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            Drawable res = getResources().getDrawable(imageResource);
+            logout.setImageDrawable(res);
+        }
+        else {
+            String uri = "@drawable/logout_white";
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            Drawable res = getResources().getDrawable(imageResource);
+            logout.setImageDrawable(res);
+        }
         mySwitch = (Switch) findViewById(R.id.switchmode);
         nswitch = (Switch) findViewById(R.id.notificationswitch);
+        signout = (TextView) findViewById(R.id.signout);
+        delete = (TextView) findViewById(R.id.delete);
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signoutacc();
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteacc();
+            }
+        });
         final Notificationsetter notifi = new Notificationsetter(this);
         nswitch.setChecked(notifi.checkNotification(options[1]));
         if (i ==1){
@@ -120,6 +163,62 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         startActivity(i);
         overridePendingTransition(R.anim.stay,R.anim.fragment_fade_enter);
         finish();
+    }
+
+    private void signoutacc(){
+        FirebaseAuth.getInstance().signOut();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to SignOut?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alertDialog.dismiss();
+                Toast.makeText(getApplicationContext(),"Signed Out",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+            }
+        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        alertDialog.dismiss();
+                    }
+                });
+        alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void deleteacc(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to Delete Account?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alertDialog.dismiss();
+                user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isComplete()) {
+                            Toast.makeText(getApplicationContext(), "Account Successfully Deleted", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(SettingsActivity.this, LoginActivity.class);
+                            startActivity(i);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+                        }
+                    }
+                });
+            }
+        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        alertDialog.dismiss();
+                    }
+                });
+        alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     @Override

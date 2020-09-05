@@ -21,7 +21,7 @@
             android:background="?attr/toolbarcolor"
             android:elevation="4dp">
 
-        <TextView
+            <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,8 +40,8 @@
             android:id="@+id/departrecycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layoutAnimation="@anim/anim_fall_down"
-            android:background="?attr/backcolor" />
+            android:background="?attr/backcolor"
+            android:layoutAnimation="@anim/anim_fall_down" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -56,6 +56,7 @@
         app:itemIconTint="@color/blue"
         app:itemTextColor="?attr/textcolor"
         app:menu="@menu/drawermenu" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
 
