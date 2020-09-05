@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "715390093343",
+    "firebase_url": "https://orientation-d3627.firebaseio.com",
+    "project_id": "orientation-d3627",
+    "storage_bucket": "orientation-d3627.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715390093343:android:445164ea8d1d745b87ed2a",
+        "android_client_info": {
+          "package_name": "com.example.orientation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715390093343-c354jb256msdmdv3qchjgmsd9lagqt17.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.orientation",
+            "certificate_hash": "c647ec01af16362d43fd2c9593f6602e9047ab23"
+          }
+        },
+        {
+          "client_id": "715390093343-blrak34skaaf41nagv7l4thdf3sjchf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe4irvkzxtXrIV0J3RRZfH0FhhXKHrN1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715390093343-blrak34skaaf41nagv7l4thdf3sjchf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

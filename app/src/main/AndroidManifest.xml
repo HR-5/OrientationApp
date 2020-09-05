@@ -17,32 +17,35 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Attendance.AttendanceActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" >
+        <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Attendance.AttendanceActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
         </activity>
-        <activity android:name=".Settings.SettingsActivity"
+        <activity
+            android:name=".Settings.SettingsActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" ></activity>
-        <activity android:name=".Features.FeatureActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".Features.FeatureActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" ></activity>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".Departments.DepartMotto"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" >
-        </activity>
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity
             android:name=".Departments.DepartActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" >
-        </activity>
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity
             android:name=".Food.FoodActivity"
             android:screenOrientation="portrait"
@@ -59,10 +62,7 @@
         <activity
             android:name=".Splash.MainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
-
+            tools:ignore="LockedOrientationActivity"></activity>
 
         <service android:name=".Splash.Myservice" />
 
