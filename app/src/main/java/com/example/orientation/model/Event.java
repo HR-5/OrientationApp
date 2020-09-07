@@ -8,8 +8,26 @@ public class Event {
     public String location;
     public String locurl;
     public String imgname;
+    public String latitude;
+    public String longitude;
 
-    public Event(String name, String stime, String etime, String description, String location, String locurl, String imgname) {
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public Event(String name, String stime, String etime, String description, String location, String locurl, String imgname, String latitude, String longitude) {
         this.name = name;
         this.stime = stime;
         this.etime = etime;
@@ -17,6 +35,8 @@ public class Event {
         this.location = location;
         this.locurl = locurl;
         this.imgname = imgname;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Event() {

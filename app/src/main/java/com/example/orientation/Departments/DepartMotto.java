@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -34,12 +35,14 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.orientation.Dbhelper.DepartDB;
 import com.example.orientation.R;
+import com.example.orientation.Schedule.Maps;
 import com.example.orientation.model.DepartTable;
 
 import java.util.ArrayList;
 
 public class DepartMotto extends AppCompatActivity {
     String lurl;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +67,13 @@ public class DepartMotto extends AppCompatActivity {
         DepartDB db = new DepartDB(this);
         Cursor cursor = db.showDatabyName(departName);
         cursor.moveToFirst();
+        context = getApplicationContext();
         String name = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_NAME));
         String iurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_IURL));
         lurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LURL));
         String desc = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_DESC));
+        String lati = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LAT));
+        String longi = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LONG));
         String[] descr = desc.split("\r\n\r\n");
         String[] list = descr[1].split("\r\n");
         String vision = descr[0], mission = descr[1];
@@ -78,13 +84,13 @@ public class DepartMotto extends AppCompatActivity {
         imgback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(null);
+                direct(lati,longi,name);
             }
         });
         getdirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(null);
+                direct(lati,longi,name);
             }
         });
     }
@@ -119,9 +125,9 @@ public class DepartMotto extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void direct(View view) {
-        Uri uri = Uri.parse(lurl);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        this.startActivity(intent);
+    public void direct(String lat,String longi,String pname) {
+        Maps maps = new Maps(lat,longi,pname);
+        maps.show(getSupportFragmentManager(), "BottomSheet");
     }
+
 }

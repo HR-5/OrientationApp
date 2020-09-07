@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,6 +64,8 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         String des = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_DESC));
         String iurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_IMG));
         String loc = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LOC));
+        String lati = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LAT));
+        String longi = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LONG));
         final String lurl = cursor.getString(cursor.getColumnIndex(SchdTable.SchdEntry.COLUMN_LURL));
         if(iurl.equals("null")) {
             String uri = "@drawable/null";
@@ -83,19 +86,19 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         holder.dir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lurl);
+                direct(lati,longi,loc);
             }
         });
         holder.loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lurl);
+                direct(lati,longi,loc);
             }
         });
         holder.locset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lurl);
+                direct(lati,longi,loc);
             }
         });
     }
@@ -115,10 +118,9 @@ public class DescAdapter extends RecyclerView.Adapter<DescAdapter.ViewHolder> {
         }
     }
 
-    public void direct(String lurl) {
-        Uri uri = Uri.parse(lurl);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        context.startActivity(intent);
+    public void direct(String lat,String longi,String pname) {
+       Maps maps = new Maps(lat,longi,pname);
+       maps.show(((AppCompatActivity) context).getSupportFragmentManager(), "BottomSheet");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

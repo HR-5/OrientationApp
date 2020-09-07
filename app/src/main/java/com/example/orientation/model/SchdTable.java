@@ -15,5 +15,7 @@ public class SchdTable {
         public static final String COLUMN_LURL = "lurl";
         public static final String COLUMN_DATE = "date";
         public static final String COLUMN_IMG = "img";
+        public static final String COLUMN_LAT = "latitude";
+        public static final String COLUMN_LONG = "longitude";
     }
 }

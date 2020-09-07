@@ -28,6 +28,7 @@ import com.example.orientation.Dbhelper.DepartDB;
 import com.example.orientation.Dbhelper.FoodDB;
 import com.example.orientation.Dbhelper.SchdDB;
 import com.example.orientation.Dbhelper.SportsDB;
+import com.example.orientation.Login.LoginActivity;
 import com.example.orientation.R;
 import com.example.orientation.Schedule.Sched_Activity;
 import com.example.orientation.Settings.Notificationsetter;
@@ -137,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 cv.put(SchdTable.SchdEntry.COLUMN_LURL, eve.getLocurl());
                 cv.put(SchdTable.SchdEntry.COLUMN_IMG, eve.getimgname());
                 cv.put(SchdTable.SchdEntry.COLUMN_DATE, schedules.get(i).getDate());
+                cv.put(SchdTable.SchdEntry.COLUMN_LAT, eve.getLatitude());
+                cv.put(SchdTable.SchdEntry.COLUMN_LONG, eve.getLongitude());
                 mDatabase.insert(SchdTable.SchdEntry.TABLE_NAME, null, cv);
             }
         }
@@ -148,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
             cv1.put(DepartTable.DepartEntry.COLUMN_LURL, department.getLocurl());
             cv1.put(DepartTable.DepartEntry.COLUMN_IURL, department.getImgurl());
             cv1.put(DepartTable.DepartEntry.COLUMN_DESC, department.getDescription());
+            cv1.put(DepartTable.DepartEntry.COLUMN_LAT, department.getLatitude());
+            cv1.put(DepartTable.DepartEntry.COLUMN_LONG, department.getLongitude());
             mDatabase.insert(DepartTable.DepartEntry.TABLE_NAME, null, cv1);
         }
         final SportsDB dbHelper2 = new SportsDB(context);
@@ -158,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
             cv2.put(SportsTable.SportsEntry.COLUMN_LURL, sp.getLocurl());
             cv2.put(SportsTable.SportsEntry.COLUMN_IURL, sp.getImgurl());
             cv2.put(SportsTable.SportsEntry.COLUMN_DESC, sp.getDescription());
+            cv2.put(SportsTable.SportsEntry.COLUMN_LAT, sp.getLatitude());
+            cv2.put(SportsTable.SportsEntry.COLUMN_LONG, sp.getLongitude());
             mDatabase.insert(SportsTable.SportsEntry.TABLE_NAME, null, cv2);
         }
         final FoodDB dbHelper3 = new FoodDB(context);
@@ -168,12 +175,14 @@ public class MainActivity extends AppCompatActivity {
             cv3.put(FoodTable.FoodEntry.COLUMN_LURL, food.getLocurl());
             cv3.put(FoodTable.FoodEntry.COLUMN_IURL, food.getImgurl());
             cv3.put(FoodTable.FoodEntry.COLUMN_DESC, food.getDescription());
+            cv3.put(FoodTable.FoodEntry.COLUMN_LAT, food.getLatitude());
+            cv3.put(FoodTable.FoodEntry.COLUMN_LONG, food.getLongitude());
             mDatabase.insert(FoodTable.FoodEntry.TABLE_NAME, null, cv3);
         }
     }
 
     private void callSchedule() {
-        Intent i = new Intent(this, Sched_Activity.class);
+        Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }

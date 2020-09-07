@@ -13,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.orientation.R;
+import com.example.orientation.Schedule.Maps;
 import com.example.orientation.model.SportsTable;
 
 import java.util.ArrayList;
@@ -49,6 +51,8 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> 
         String name = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_NAME));
         String iurl = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_IURL));
         final String lurl = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_LURL));
+        String lati = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_LAT));
+        String longi = cursor.getString(cursor.getColumnIndex(SportsTable.SportsEntry.COLUMN_LONG));
         if(iurl.equals("null")) {
             String uri = "@drawable/null_img";
             int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
@@ -67,7 +71,7 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> 
         holder.maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lurl);
+                direct(lati,longi,name);
             }
         });
 
@@ -88,10 +92,10 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> 
         }
     }
 
-    public void direct(String lurl) {
-        Uri uri = Uri.parse(lurl);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        context.startActivity(intent);
+
+    public void direct(String lat,String longi,String pname) {
+        Maps maps = new Maps(lat,longi,pname);
+        maps.show(((AppCompatActivity) context).getSupportFragmentManager(), "BottomSheet");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -25,6 +25,8 @@ public class FoodDB extends SQLiteOpenHelper {
                 FoodEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 FoodEntry.COLUMN_LURL + " TEXT NOT NULL, " +
                 FoodEntry.COLUMN_DESC + " TEXT NOT NULL, " +
+                FoodEntry.COLUMN_LAT + " TEXT NOT NULL, " +
+                FoodEntry.COLUMN_LONG + " TEXT NOT NULL, " +
                 FoodEntry.COLUMN_IURL + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_FOODLIST_TABLE);

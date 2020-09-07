@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
 
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.orientation.R;
+import com.example.orientation.Schedule.Maps;
 import com.example.orientation.model.DepartTable;
 import com.example.orientation.model.Department;
 
@@ -59,6 +61,8 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         String name = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_NAME));
         names.add(name);
         String iurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_IURL));
+        String lati = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LAT));
+        String longi = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LONG));
         final String lurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LURL));
 //        String uri = "@drawable/" + iurl;
 //        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
@@ -74,7 +78,7 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
         holder.maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lurl);
+                direct(lati,longi,name);
             }
         });
 
@@ -94,12 +98,11 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
             notifyDataSetChanged();
         }
     }
-
-    public void direct(String lurl) {
-        Uri uri = Uri.parse(lurl);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        context.startActivity(intent);
+    public void direct(String lat,String longi,String pname) {
+        Maps maps = new Maps(lat,longi,pname);
+        maps.show(((AppCompatActivity) context).getSupportFragmentManager(), "BottomSheet");
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView depart;

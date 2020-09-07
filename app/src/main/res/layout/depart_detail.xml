@@ -125,7 +125,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:background="@null"
-        android:onClick="direct"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/mapback"
         app:layout_constraintStart_toEndOf="@+id/direct"

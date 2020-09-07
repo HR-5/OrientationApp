@@ -13,6 +13,7 @@
     <string name="close">Close</string>
     <string name="vision">Vision</string>
     <string name="mission">Mission</string>
+    <string name="map_api">AIzaSyDzjLtmVaCSq06v7UtsKlIPlHLKFgiBRCs</string>
     <string name="features">Orientation Programs are conducted to welcome the freshers coming into the college and make them comfortable to adapt to the College Environment. During this period, freshers face many difficulties like knowing their orientation schedules, locating departments during Department Visits. This Orientation App is built to help the freshers to know their schedules and locate places like Grocery stores,Departments,etc inside the campus.
 
 \n\nSchedule:\nThis tab contains the name, timings, venue and description of the events conducted during the Orientation Program. The venue can be located on google maps just by touching the Name of the venue. The schedule gets updated from its server every time you open the app using the internet. The schedule can be viewed offline after the app is opened using the internet at least once.

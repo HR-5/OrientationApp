@@ -26,6 +26,8 @@ public class DepartDB extends SQLiteOpenHelper {
                 DepartEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 DepartEntry.COLUMN_LURL + " TEXT NOT NULL, " +
                 DepartEntry.COLUMN_DESC + " TEXT NOT NULL, " +
+                DepartEntry.COLUMN_LAT + " TEXT NOT NULL, " +
+                DepartEntry.COLUMN_LONG + " TEXT NOT NULL, " +
                 DepartEntry.COLUMN_IURL + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_DEPARTLIST_TABLE);

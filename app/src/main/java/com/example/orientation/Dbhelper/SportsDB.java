@@ -26,6 +26,8 @@ public class SportsDB extends SQLiteOpenHelper {
                 SportsEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 SportsEntry.COLUMN_LURL + " TEXT NOT NULL, " +
                 SportsEntry.COLUMN_DESC + " TEXT NOT NULL, " +
+                SportsEntry.COLUMN_LAT + " TEXT NOT NULL, " +
+                SportsEntry.COLUMN_LONG + " TEXT NOT NULL, " +
                 SportsEntry.COLUMN_IURL + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_SPORTLIST_TABLE);

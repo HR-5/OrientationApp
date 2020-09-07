@@ -5,6 +5,24 @@ public class Department {
     public String locurl;
     public String imgurl;
     public String description;
+    public String latitude;
+    public String longitude;
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
     public String getDescription() {
         return description;
@@ -37,4 +55,6 @@ public class Department {
     public void setLocurl(String locurl) {
         this.locurl = locurl;
     }
+
+
 }

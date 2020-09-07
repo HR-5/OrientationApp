@@ -33,6 +33,8 @@ public class SchdDB extends SQLiteOpenHelper {
                 SchdEntry.COLUMN_LOC + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_LURL + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_IMG + " TEXT NOT NULL, " +
+                SchdEntry.COLUMN_LAT + " TEXT NOT NULL, " +
+                SchdEntry.COLUMN_LONG + " TEXT NOT NULL, " +
                 SchdEntry.COLUMN_DATE + " TEXT NOT NULL" +
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE_SCHDLIST_TABLE);
@@ -85,7 +87,9 @@ public class SchdDB extends SQLiteOpenHelper {
             String location = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_LOC));
             String locurl = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_LURL));
             String imgname = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_IMG));
-            Event oevent = new Event(name,stime,etime,description,location,locurl,imgname);
+            String lat = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_LAT));
+            String longi = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_LONG));
+            Event oevent = new Event(name,stime,etime,description,location,locurl,imgname,lat,longi);
             String date = cursor.getString(cursor.getColumnIndex(SchdEntry.COLUMN_DATE));
             if(pos == 0) {
                 eventset.add(oevent);

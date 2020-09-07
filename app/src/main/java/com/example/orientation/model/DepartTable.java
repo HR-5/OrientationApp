@@ -12,5 +12,7 @@ public class DepartTable {
         public static final String COLUMN_LURL = "lurl";
         public static final String COLUMN_IURL = "iurl";
         public static final String COLUMN_DESC = "descr";
+        public static final String COLUMN_LAT = "latitude";
+        public static final String COLUMN_LONG = "longitude";
     }
 }
