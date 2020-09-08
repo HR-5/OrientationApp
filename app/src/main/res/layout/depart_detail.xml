@@ -118,14 +118,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mapback" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:background="@null"
-        android:scaleType="fitXY"
+        android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="@+id/mapback"
         app:layout_constraintStart_toEndOf="@+id/direct"
         app:layout_constraintTop_toTopOf="@+id/mapback"

@@ -60,7 +60,7 @@ public class DepartMotto extends AppCompatActivity {
         setContentView(R.layout.depart_detail);
         Bundle bundle = getIntent().getExtras();
         String departName = bundle.getString("name");
-        ImageView imgback = (ImageView) findViewById(R.id.mapback);
+        ImageView imgback = (ImageView) findViewById(R.id.imageButton);
         TextView getdirect = (TextView) findViewById(R.id.direct);
         TextView nameset = (TextView) findViewById(R.id.name);
         TextView visionset = (TextView) findViewById(R.id.vision_set);
@@ -72,8 +72,6 @@ public class DepartMotto extends AppCompatActivity {
         String iurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_IURL));
         lurl = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LURL));
         String desc = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_DESC));
-        String lati = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LAT));
-        String longi = cursor.getString(cursor.getColumnIndex(DepartTable.DepartEntry.COLUMN_LONG));
         String[] descr = desc.split("\r\n\r\n");
         String[] list = descr[1].split("\r\n");
         String vision = descr[0], mission = descr[1];
@@ -84,13 +82,13 @@ public class DepartMotto extends AppCompatActivity {
         imgback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lati,longi,name);
+                direct();
             }
         });
         getdirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                direct(lati,longi,name);
+                direct();
             }
         });
     }
@@ -125,9 +123,10 @@ public class DepartMotto extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void direct(String lat,String longi,String pname) {
-        Maps maps = new Maps(lat,longi,pname);
-        maps.show(getSupportFragmentManager(), "BottomSheet");
+    public void direct() {
+        Uri uri = Uri.parse(lurl);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        this.startActivity(intent);
     }
 
 }
