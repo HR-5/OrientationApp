@@ -126,6 +126,10 @@ public class SignInFragment extends Fragment {
         else {
             mailid = email.getText().toString();
             pass = password.getText().toString();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Signing In...");
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
             if (isValid(mailid) && pass.length() >= 6) {
                 firebaseAuth.signInWithEmailAndPassword(mailid, pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

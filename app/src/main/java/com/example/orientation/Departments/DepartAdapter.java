@@ -37,12 +37,15 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
     Cursor cursor;
     ArrayList<Boolean> show;
     ArrayList<String> names;
+    Activity activity;
 
-    public DepartAdapter(Context context, Cursor cursor) {
+
+    public DepartAdapter(Context context, Cursor cursor, Activity activity) {
         this.context = context;
         this.cursor = cursor;
         show = new ArrayList<Boolean>();
         names = new ArrayList<String>();
+        this.activity = activity;
     }
 
     @NonNull
@@ -123,11 +126,7 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
                     String name = names.get(pos);
                     Intent intent = new Intent(context, DepartMotto.class);
                     intent.putExtra("name", name);
-                    Pair[] pair = new Pair[2];
-                    pair[0] = Pair.create((View) depart, "name");
-                    pair[1] = Pair.create((View) img, "imageShare");
-                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, pair);
-                    context.startActivity(intent, options.toBundle());
+                    activity.startActivity(intent);
                 }
             });
         }

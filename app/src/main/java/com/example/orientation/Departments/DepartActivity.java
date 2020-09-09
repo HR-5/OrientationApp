@@ -52,7 +52,7 @@ public class DepartActivity extends AppCompatActivity implements NavigationView.
         navigationView.getMenu().getItem(4).setActionView(R.layout.arrow);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.departrecycle);
-        DepartAdapter departAdapter = new DepartAdapter(this, null);
+        DepartAdapter departAdapter = new DepartAdapter(this, null,this);
         recyclerView.setAdapter(departAdapter);
         recyclerView.setHasFixedSize(true);
         final GridLayoutManager layoutManager = new GridLayoutManager(this, 1);

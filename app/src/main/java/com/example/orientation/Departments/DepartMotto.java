@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -120,7 +123,14 @@ public class DepartMotto extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent(context, DepartActivity.class);
+        ImageView img = (ImageView) findViewById(R.id.img);
+        TextView nameset = (TextView) findViewById(R.id.name);
+        Pair[] pair = new Pair[2];
+        pair[0] = Pair.create((View) nameset, "name");
+        pair[1] = Pair.create((View) img, "imageShare");
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pair);
+        startActivity(intent);
     }
 
     public void direct() {

@@ -72,9 +72,6 @@ public class Maps extends BottomSheetDialogFragment implements OnMapReadyCallbac
         View view = inflater.inflate(R.layout.map_bottomsheet, container, false);
         mMapView = view.findViewById(R.id.mapview);
         Bundle mapViewBundle = null;
-        if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
-        }
         mMapView.onCreate(mapViewBundle);
         return view;
     }

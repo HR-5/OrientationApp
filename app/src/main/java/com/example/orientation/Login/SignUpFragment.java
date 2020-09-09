@@ -1,6 +1,7 @@
 package com.example.orientation.Login;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -90,6 +91,10 @@ public class SignUpFragment extends Fragment {
         else {
             mailid = email.getText().toString();
             pass = password.getText().toString();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Signing Up...");
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
             if (isValid(mailid) && pass.length() >= 6) {
                 firebaseAuth.createUserWithEmailAndPassword(mailid, pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
